@@ -87,7 +87,9 @@ static CGFloat const kSliderMarginHorizontal = 50;
     _imageView.blurRadius = 20;
     _imageView.framesCount = 20;
     _imageView.blurTintColor = [UIColor colorWithWhite:1.0 alpha:0.3];
-    [_imageView ty_blurInAnimationWithDuration:0.25f];
+    [_imageView ty_blurInAnimationWithDuration:0.25f completion:^{
+        NSLog(@"Animation End");
+    }];
 }
 
 - (void)onSliderValueChanged:(UISlider *)sender
