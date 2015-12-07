@@ -41,7 +41,7 @@ static const char kBlurRadiusKey = '\0';
     [self ty_layoutSubviews];
     
     self.baseImage = self.image;
-    [self generateBlurFrames];
+    [self ty_generateBlurFrames];
     
     // Defaults
     self.animationDuration = 0.1f;
@@ -58,7 +58,7 @@ static const char kBlurRadiusKey = '\0';
 
 #pragma mark - Animation Methods
 
-- (void)generateBlurFrames
+- (void)ty_generateBlurFrames
 {
     if (!self.baseImage) {
         return;
@@ -92,7 +92,7 @@ static const char kBlurRadiusKey = '\0';
     }
 }
 
-- (void)blurInAnimationWithDuration:(CGFloat)duration
+- (void)ty_blurInAnimationWithDuration:(CGFloat)duration
 {
     self.animationDuration = duration;
     
@@ -103,7 +103,7 @@ static const char kBlurRadiusKey = '\0';
     [self startAnimating];
 }
 
-- (void)blurOutAnimationWithDuration:(CGFloat)duration
+- (void)ty_blurOutAnimationWithDuration:(CGFloat)duration
 {
     self.animationDuration = duration;
     
@@ -114,9 +114,9 @@ static const char kBlurRadiusKey = '\0';
     [self startAnimating];
 }
 
-- (void)blurInAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
+- (void)ty_blurInAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
 {
-    [self blurInAnimationWithDuration:duration];
+    [self ty_blurInAnimationWithDuration:duration];
     if(completion){
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -127,9 +127,9 @@ static const char kBlurRadiusKey = '\0';
     }
 }
 
-- (void)blurOutAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
+- (void)ty_blurOutAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
 {
-    [self blurOutAnimationWithDuration:duration];
+    [self ty_blurOutAnimationWithDuration:duration];
     if(completion){
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -153,7 +153,7 @@ static const char kBlurRadiusKey = '\0';
         return;
     }
     objc_setAssociatedObject(self, &kBlurTintColorKey, blurTintColor, OBJC_ASSOCIATION_RETAIN);
-    [self generateBlurFrames];
+    [self ty_generateBlurFrames];
 }
 
 - (void)setFramesCount:(NSInteger)framesCount
@@ -179,7 +179,7 @@ static const char kBlurRadiusKey = '\0';
     }
     NSNumber *number = [NSNumber numberWithFloat:blurRadius];
     objc_setAssociatedObject(self, &kBlurRadiusKey, number, OBJC_ASSOCIATION_ASSIGN);
-    [self generateBlurFrames];
+    [self ty_generateBlurFrames];
 }
 
 #pragma mark - Getter

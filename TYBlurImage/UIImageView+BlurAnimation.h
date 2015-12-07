@@ -20,13 +20,14 @@
  */
 @property (assign) NSInteger framesCount;
 
-/**
- *  @brief  The blur amount
- *
- *  Default amount is 0.1f A CGFloat from 0.0f to 1.0f.
- */
 @property (nonatomic, assign) CGFloat blurRadius;
 
-- (void)blurInAnimationWithDuration:(CGFloat)duration;
+- (void)ty_blurInAnimationWithDuration:(CGFloat)duration;
+
+- (void)ty_blurOutAnimationWithDuration:(CGFloat)duration;
+
+- (void)ty_blurInAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion;
+
+- (void)ty_blurOutAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion;
 
 @end
