@@ -6,8 +6,12 @@ An easy way to set up blur effect and play the animation.
 
 ### Play Aniamtion
 
+![Play Aniamtion Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/PlayAnimation.gif)
 
+### Default Effect
 
-### DefaultEffect
+![Default Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/DefaultEffect.gif)
 
-### CustomRadius
+### Custom Radius
+
+![Default Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/CustomRadius.gif)
