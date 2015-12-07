@@ -15,3 +15,13 @@ An easy way to set up blur effect and play the animation.
 ### Custom Radius
 
 ![Default Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/CustomRadius.gif)
+
+## Installing `TYBlurImage`
+
+### Using CocoaPods
+
+Add the following to your Podfile.
+
+```
+pod 'TYBlurImage'
+```
