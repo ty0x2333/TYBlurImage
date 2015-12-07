@@ -1,4 +1,8 @@
-# TYBlurImage
+TYBlurImage
+=========
+[![Pod Version](http://img.shields.io/cocoapods/v/TYBlurImage.svg?style=flat)](http://cocoadocs.org/docsets/TYBlurImage/)
+[![Pod Platform](http://img.shields.io/cocoapods/p/TYBlurImage.svg?style=flat)](http://cocoadocs.org/docsets/TYBlurImage/)
+[![Pod License](http://img.shields.io/cocoapods/l/TYBlurImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 An easy way to set up blur effect and play the animation.
 
