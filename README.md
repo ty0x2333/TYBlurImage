@@ -25,3 +25,7 @@ Add the following to your Podfile.
 ```
 pod 'TYBlurImage'
 ```
+
+## License
+
+`TYBlurImage` is available under the MIT license. See the LICENSE file for more info.
