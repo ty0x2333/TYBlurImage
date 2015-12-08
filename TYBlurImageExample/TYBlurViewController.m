@@ -1,12 +1,12 @@
 //
-//  TYViewController.m
+//  TYBlurViewController.m
 //  TyBlureImage
 //
 //  Created by 田奕焰 on 15/12/7.
 //  Copyright © 2015年 luckytianyiyan. All rights reserved.
 //
 
-#import "TYViewController.h"
+#import "TYBlurViewController.h"
 #import "UIImageEffects.h"
 #import "UIImageView+BlurAnimation.h"
 #import "TYDemoSwitch.h"
@@ -24,7 +24,7 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
 #define kTiniColor [UIColor colorWithWhite:1.0 alpha:0.3]
 
 
-@interface TYViewController ()
+@interface TYBlurViewController ()
 {
     UIButton *_currentButton;
 }
@@ -51,7 +51,7 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
 
 @end
 
-@implementation TYViewController
+@implementation TYBlurViewController
 
 - (void)viewDidLoad
 {

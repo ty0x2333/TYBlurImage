@@ -1,5 +1,5 @@
 //
-//  TYViewController.h
+//  TYBlurViewController.h
 //  TyBlureImage
 //
 //  Created by 田奕焰 on 15/12/7.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TYViewController : UIViewController
+@interface TYBlurViewController : UIViewController
 
 
 @end

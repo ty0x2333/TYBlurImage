@@ -13,7 +13,7 @@
 		7025643D1C15F4120085F7DD /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025643A1C15F4120085F7DD /* UIImageEffects.m */; };
 		7025643E1C15F4120085F7DD /* UIImageView+BlurAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025643C1C15F4120085F7DD /* UIImageView+BlurAnimation.m */; };
 		702564431C15F43F0085F7DD /* TYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 702564401C15F43F0085F7DD /* TYAppDelegate.m */; };
-		702564441C15F43F0085F7DD /* TYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 702564421C15F43F0085F7DD /* TYViewController.m */; };
+		702564441C15F43F0085F7DD /* TYBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 702564421C15F43F0085F7DD /* TYBlurViewController.m */; };
 		702564461C15F4900085F7DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 702564451C15F4900085F7DD /* LaunchScreen.storyboard */; };
 		706466B41C17222600149225 /* TYMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466B31C17222600149225 /* TYMenuTableViewController.m */; };
 		706466B71C17261900149225 /* TYPlayAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466B61C17261900149225 /* TYPlayAnimationViewController.m */; };
@@ -33,8 +33,8 @@
 		7025643C1C15F4120085F7DD /* UIImageView+BlurAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+BlurAnimation.m"; sourceTree = "<group>"; };
 		7025643F1C15F43F0085F7DD /* TYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAppDelegate.h; sourceTree = "<group>"; };
 		702564401C15F43F0085F7DD /* TYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAppDelegate.m; sourceTree = "<group>"; };
-		702564411C15F43F0085F7DD /* TYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYViewController.h; sourceTree = "<group>"; };
-		702564421C15F43F0085F7DD /* TYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYViewController.m; sourceTree = "<group>"; };
+		702564411C15F43F0085F7DD /* TYBlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYBlurViewController.h; sourceTree = "<group>"; };
+		702564421C15F43F0085F7DD /* TYBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYBlurViewController.m; sourceTree = "<group>"; };
 		702564451C15F4900085F7DD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		706466B21C17222600149225 /* TYMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYMenuTableViewController.h; sourceTree = "<group>"; };
 		706466B31C17222600149225 /* TYMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYMenuTableViewController.m; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 				706466B31C17222600149225 /* TYMenuTableViewController.m */,
 				706466B51C17261900149225 /* TYPlayAnimationViewController.h */,
 				706466B61C17261900149225 /* TYPlayAnimationViewController.m */,
-				702564411C15F43F0085F7DD /* TYViewController.h */,
-				702564421C15F43F0085F7DD /* TYViewController.m */,
+				702564411C15F43F0085F7DD /* TYBlurViewController.h */,
+				702564421C15F43F0085F7DD /* TYBlurViewController.m */,
 				702564231C15F31E0085F7DD /* Assets.xcassets */,
 				702564281C15F31E0085F7DD /* Info.plist */,
 				702564451C15F4900085F7DD /* LaunchScreen.storyboard */,
@@ -197,7 +197,7 @@
 			files = (
 				706466B71C17261900149225 /* TYPlayAnimationViewController.m in Sources */,
 				706466BD1C1758DC00149225 /* TYDemoSlider.m in Sources */,
-				702564441C15F43F0085F7DD /* TYViewController.m in Sources */,
+				702564441C15F43F0085F7DD /* TYBlurViewController.m in Sources */,
 				7025643E1C15F4120085F7DD /* UIImageView+BlurAnimation.m in Sources */,
 				7025643D1C15F4120085F7DD /* UIImageEffects.m in Sources */,
 				706466B41C17222600149225 /* TYMenuTableViewController.m in Sources */,

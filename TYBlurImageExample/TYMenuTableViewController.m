@@ -27,7 +27,7 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
     
     _titles = @[@"Blur Image", @"Play Blur Animation"];
     
-    _viewControllersMap = @{@"Blur Image": @"TYViewController",
+    _viewControllersMap = @{@"Blur Image": @"TYBlurViewController",
                             @"Play Blur Animation": @"TYPlayAnimationViewController"
                             };
 }

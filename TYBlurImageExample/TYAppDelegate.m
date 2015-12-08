@@ -8,7 +8,7 @@
 
 #import "TYAppDelegate.h"
 #import "TYMenuTableViewController.h"
-#import "TYViewController.h"
+#import "TYBlurViewController.h"
 
 @interface TYAppDelegate ()
 
