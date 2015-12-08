@@ -7,6 +7,7 @@
 //
 
 #import "TYAppDelegate.h"
+#import "TYMenuTableViewController.h"
 #import "TYViewController.h"
 
 @interface TYAppDelegate ()
@@ -20,8 +21,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    TYViewController *viewController = [[TYViewController alloc] init];
-    self.window.rootViewController = viewController;
+    TYMenuTableViewController *viewController = [[TYMenuTableViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     
     return YES;
