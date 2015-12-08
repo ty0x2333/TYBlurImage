@@ -23,6 +23,14 @@
 @property (nonatomic, assign) CGFloat blurRadius;
 
 /**
+ *  @brief  need downsample image when play blur animation
+ *
+ *  default value is true
+ *  @note   Downsamples the image so we avoid needing to blur a huge image.
+ */
+@property (nonatomic, assign) BOOL downsampleBlurAnimationImage;
+
+/**
  *  @brief  Regenerates blur animation frames.
  *
  *  @param completion completion callback

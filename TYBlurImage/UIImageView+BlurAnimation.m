@@ -18,6 +18,7 @@ static const char kFramesCountKey = '\0';
 static const char kFramesArrayKey = '\0';
 static const char kFramesReverseArrayKey = '\0';
 static const char kBlurRadiusKey = '\0';
+static const char kDownsampleBlurAnimationImageKey = '\0';
 
 @interface UIImageView()
 
@@ -74,7 +75,7 @@ static const char kBlurRadiusKey = '\0';
         self.blurTintColor = [UIColor clearColor];
     }
     
-    UIImage *downsampledImage = [self ty_downsampleImage];
+    UIImage *downsampledImage = self.downsampleBlurAnimationImage ? self.baseImage :[self ty_downsampleImage];
     
     for (NSUInteger i = 0; i < frameCount; i++) {
         
@@ -90,7 +91,9 @@ static const char kBlurRadiusKey = '\0';
         [self.framesArray addObject:blurredImage];
         [self.framesReverseArray insertObject:blurredImage atIndex:0];
     }
-    completion();
+    if (completion) {
+        completion();
+    }
 }
 
 - (void)ty_blurInAnimationWithDuration:(CGFloat)duration
@@ -183,6 +186,16 @@ static const char kBlurRadiusKey = '\0';
     [self ty_generateBlurFrames:nil];
 }
 
+- (void)setDownsampleBlurAnimationImage:(BOOL)downsampleBlurAnimationImage
+{
+    if (self.downsampleBlurAnimationImage == downsampleBlurAnimationImage) {
+        return;
+    }
+    NSNumber *number = [NSNumber numberWithBool:downsampleBlurAnimationImage];
+    objc_setAssociatedObject(self, &kDownsampleBlurAnimationImageKey, number, OBJC_ASSOCIATION_ASSIGN);
+    [self ty_generateBlurFrames:nil];
+}
+
 #pragma mark - Getter
 
 - (UIImage *)baseImage
@@ -215,6 +228,12 @@ static const char kBlurRadiusKey = '\0';
 {
     NSNumber *number = objc_getAssociatedObject(self, &kBlurRadiusKey);
     return [number floatValue];
+}
+
+- (BOOL)downsampleBlurAnimationImage
+{
+    NSNumber *number = objc_getAssociatedObject(self, &kDownsampleBlurAnimationImageKey);
+    return [number boolValue];
 }
 
 @end
