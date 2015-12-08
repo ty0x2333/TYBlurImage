@@ -70,7 +70,7 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
             UIImage *blurredImage = [UIImageEffects imageByApplyingBlurToImage:downsampledImage
                                                                     withRadius:process * self.blurRadius
                                                                      tintColor:self.blurTintColor
-                                                         saturationDeltaFactor:1.8
+                                                         saturationDeltaFactor:1
                                                                      maskImage:nil];
             if (blurredImage == nil) {
                 continue;
