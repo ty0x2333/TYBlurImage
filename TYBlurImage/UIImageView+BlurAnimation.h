@@ -35,7 +35,7 @@
  *
  *  @param completion completion callback
  */
-- (void)ty_generateBlurFrames:(void(^)())completion;
+- (void)ty_generateBlurFramesWithCompletion:(void(^)())completion;
 
 - (void)ty_blurInAnimationWithDuration:(CGFloat)duration;
 

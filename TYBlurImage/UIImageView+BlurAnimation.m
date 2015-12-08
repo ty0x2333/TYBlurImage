@@ -32,23 +32,6 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 
 @implementation UIImageView (BlurAnimation)
 
-+ (void)load
-{
-    method_exchangeImplementations(class_getInstanceMethod(self, @selector(layoutSubviews)), class_getInstanceMethod(self, @selector(ty_layoutSubviews)));
-}
-
-- (void)ty_layoutSubviews
-{
-    [self ty_layoutSubviews];
-    
-    self.baseImage = self.image;
-    [self ty_generateBlurFrames:nil];
-    
-    // Defaults
-    self.animationDuration = 0.1f;
-    self.animationRepeatCount = 1;
-}
-
 // Downsamples the image so we avoid needing to blur a huge image.
 - (UIImage*)ty_downsampleImage
 {
@@ -59,37 +42,43 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 
 #pragma mark - Animation Methods
 
-- (void)ty_generateBlurFrames:(void(^)())completion
+- (void)ty_generateBlurFramesWithCompletion:(void(^)())completion
 {
-    if (!self.baseImage) {
-        return;
+    NSLog(@"ty_generateBlurFramesWithCompletion");
+    if (self.baseImage == nil) {
+        NSLog(@"baseImage is nil, init base image");
+        self.baseImage = self.image;
     }
-    self.framesArray = [[NSMutableArray alloc] init];
-    self.framesReverseArray = [[NSMutableArray alloc] init];
-    
-    // Our default number of frames, if none is provided.
-    // Keep this low to prevent huge performance issues.
-    NSInteger frameCount = self.framesCount ? self.framesCount : kDefaultFramesCount;
-    
-    if (!self.blurTintColor) {
-        self.blurTintColor = [UIColor clearColor];
-    }
-    
-    UIImage *downsampledImage = self.downsampleBlurAnimationImage ? self.baseImage :[self ty_downsampleImage];
-    
-    for (NSUInteger i = 0; i < frameCount; i++) {
+    if (self.baseImage) {
+        NSLog(@"==== start generate ====");
+        self.framesArray = [[NSMutableArray alloc] init];
+        self.framesReverseArray = [[NSMutableArray alloc] init];
         
-        CGFloat process = (CGFloat)i / frameCount;
-        UIImage *blurredImage = [UIImageEffects imageByApplyingBlurToImage:downsampledImage
-                                                                withRadius:process * self.blurRadius
-                                                                 tintColor:self.blurTintColor
-                                                     saturationDeltaFactor:1.8
-                                                                 maskImage:nil];
-        if (blurredImage == nil) {
-            continue;
+        // Our default number of frames, if none is provided.
+        // Keep this low to prevent huge performance issues.
+        NSInteger frameCount = self.framesCount ? self.framesCount : kDefaultFramesCount;
+        
+        if (!self.blurTintColor) {
+            self.blurTintColor = [UIColor clearColor];
         }
-        [self.framesArray addObject:blurredImage];
-        [self.framesReverseArray insertObject:blurredImage atIndex:0];
+        
+        UIImage *downsampledImage = self.downsampleBlurAnimationImage ? self.baseImage :[self ty_downsampleImage];
+        
+        for (NSUInteger i = 0; i < frameCount; i++) {
+            
+            CGFloat process = (CGFloat)i / frameCount;
+            UIImage *blurredImage = [UIImageEffects imageByApplyingBlurToImage:downsampledImage
+                                                                    withRadius:process * self.blurRadius
+                                                                     tintColor:self.blurTintColor
+                                                         saturationDeltaFactor:1.8
+                                                                     maskImage:nil];
+            if (blurredImage == nil) {
+                continue;
+            }
+            [self.framesArray addObject:blurredImage];
+            [self.framesReverseArray insertObject:blurredImage atIndex:0];
+        }
+        NSLog(@"==== end generate ====");
     }
     if (completion) {
         completion();
@@ -98,66 +87,67 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 
 - (void)ty_blurInAnimationWithDuration:(CGFloat)duration
 {
-    self.animationDuration = duration;
-    
-    self.animationImages = self.framesArray;
-    
-    [self setImage:[self.framesArray lastObject]];
-    
-    [self startAnimating];
+    [self ty_blurInAnimationWithDuration:duration completion:nil];
 }
 
 - (void)ty_blurOutAnimationWithDuration:(CGFloat)duration
 {
-    self.animationDuration = duration;
-    
-    self.animationImages = self.framesReverseArray;
-    
-    [self setImage:self.baseImage];
-    
-    [self startAnimating];
+    [self ty_blurOutAnimationWithDuration:duration completion:nil];
 }
 
 - (void)ty_blurInAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
 {
-    [self ty_blurInAnimationWithDuration:duration];
-    if(completion){
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            if(completion){
-                completion();
-            }
-        });
+    NSLog(@"ty_blurInAnimationWithDuration");
+    if (self.framesArray == nil) {
+        NSLog(@"framesArray is nil, init generate blur frames");
+        [self ty_generateBlurFramesWithCompletion:^{
+            [self ty_blurInAnimationWithDuration:duration completion:completion];
+        }];
+    } else {
+        self.animationDuration = duration;
+        self.animationImages = self.framesArray;
+        [self setImage:[self.framesArray lastObject]];
+        [self startAnimating];
+        if(completion){
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                if(completion){
+                    completion();
+                }
+            });
+        }
     }
 }
 
 - (void)ty_blurOutAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
 {
-    [self ty_blurOutAnimationWithDuration:duration];
-    if(completion){
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            if(completion){
-                completion();
-            }
-        });
+    NSLog(@"ty_blurOutAnimationWithDuration");
+    if (self.framesReverseArray == nil) {
+        NSLog(@"framesReverseArray is nil, init generate blur frames");
+        [self ty_generateBlurFramesWithCompletion:^{
+            [self ty_blurOutAnimationWithDuration:duration completion:completion];
+        }];
+    } else {
+        self.animationDuration = duration;
+        self.animationImages = self.framesReverseArray;
+        [self setImage:self.baseImage];
+        [self startAnimating];
+        if(completion){
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                if(completion){
+                    completion();
+                }
+            });
+        }
     }
 }
 
 #pragma mark - Setter
 
-- (void)setBaseImage:(UIImage *)baseImage
-{
-    objc_setAssociatedObject(self, &kBaseImageKey, baseImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 - (void)setBlurTintColor:(UIColor *)blurTintColor
 {
-    if ([self.blurTintColor isEqual:blurTintColor]) {
-        return;
-    }
     objc_setAssociatedObject(self, &kBlurTintColorKey, blurTintColor, OBJC_ASSOCIATION_RETAIN);
-    [self ty_generateBlurFrames:nil];
 }
 
 - (void)setFramesCount:(NSInteger)framesCount
@@ -166,42 +156,19 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
     objc_setAssociatedObject(self, &kFramesCountKey, number, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (void)setFramesArray:(NSMutableArray *)framesArray
-{
-    objc_setAssociatedObject(self, &kFramesArrayKey, framesArray, OBJC_ASSOCIATION_RETAIN);
-}
-
-- (void)setFramesReverseArray:(NSMutableArray *)framesReverseArray
-{
-    objc_setAssociatedObject(self, &kFramesReverseArrayKey, framesReverseArray, OBJC_ASSOCIATION_RETAIN);
-}
-
 - (void)setBlurRadius:(CGFloat)blurRadius
 {
-    if (self.blurRadius == blurRadius) {
-        return;
-    }
     NSNumber *number = [NSNumber numberWithFloat:blurRadius];
     objc_setAssociatedObject(self, &kBlurRadiusKey, number, OBJC_ASSOCIATION_ASSIGN);
-    [self ty_generateBlurFrames:nil];
 }
 
 - (void)setDownsampleBlurAnimationImage:(BOOL)downsampleBlurAnimationImage
 {
-    if (self.downsampleBlurAnimationImage == downsampleBlurAnimationImage) {
-        return;
-    }
     NSNumber *number = [NSNumber numberWithBool:downsampleBlurAnimationImage];
     objc_setAssociatedObject(self, &kDownsampleBlurAnimationImageKey, number, OBJC_ASSOCIATION_ASSIGN);
-    [self ty_generateBlurFrames:nil];
 }
 
 #pragma mark - Getter
-
-- (UIImage *)baseImage
-{
-    return objc_getAssociatedObject(self, &kBaseImageKey);
-}
 
 - (UIColor *)blurTintColor
 {
@@ -214,16 +181,6 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
     return [number integerValue];
 }
 
-- (NSMutableArray *)framesArray
-{
-    return objc_getAssociatedObject(self, &kFramesArrayKey);
-}
-
-- (NSMutableArray *)framesReverseArray
-{
-    return objc_getAssociatedObject(self, &kFramesReverseArrayKey);
-}
-
 - (CGFloat)blurRadius
 {
     NSNumber *number = objc_getAssociatedObject(self, &kBlurRadiusKey);
@@ -234,6 +191,42 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 {
     NSNumber *number = objc_getAssociatedObject(self, &kDownsampleBlurAnimationImageKey);
     return [number boolValue];
+}
+
+#pragma mark - Private
+
+#pragma mark Setter
+
+- (void)setBaseImage:(UIImage *)baseImage
+{
+    objc_setAssociatedObject(self, &kBaseImageKey, baseImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)setFramesArray:(NSMutableArray *)framesArray
+{
+    objc_setAssociatedObject(self, &kFramesArrayKey, framesArray, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (void)setFramesReverseArray:(NSMutableArray *)framesReverseArray
+{
+    objc_setAssociatedObject(self, &kFramesReverseArrayKey, framesReverseArray, OBJC_ASSOCIATION_RETAIN);
+}
+
+#pragma mark Getter
+
+- (UIImage *)baseImage
+{
+    return objc_getAssociatedObject(self, &kBaseImageKey);
+}
+
+- (NSMutableArray *)framesArray
+{
+    return objc_getAssociatedObject(self, &kFramesArrayKey);
+}
+
+- (NSMutableArray *)framesReverseArray
+{
+    return objc_getAssociatedObject(self, &kFramesReverseArrayKey);
 }
 
 @end
