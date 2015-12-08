@@ -9,14 +9,11 @@
 #import "TYPlayAnimationViewController.h"
 #import "UIImageView+BlurAnimation.h"
 #import "TYDemoSwitch.h"
+#import "TYDemoSlider.h"
 
 static CGFloat const kButtonHeight = 50.f;
 
-static CGFloat const kFirstSliderMarginTop = 10.f;
-static CGFloat const kSliderHeight = 20.f;
-static CGFloat const kSliderMarginRight = 20.f;
-
-static CGFloat const kLabelMarginLeft = 20.f;
+static CGFloat const kSliderHeight = 40.f;
 
 static CGFloat const kLabelHeight = 30.f;
 static CGFloat const kSwitchHeight = 30.f;
@@ -25,9 +22,6 @@ static CGFloat const kSwitchHeight = 30.f;
 
 
 @interface TYPlayAnimationViewController ()
-
-@property (nonatomic, strong) UILabel *radiusLabel;
-@property (nonatomic, strong) UILabel *framesCountLabel;
 
 @property (nonatomic, strong) TYDemoSwitch *tintColorSwitch;
 @property (nonatomic, strong) TYDemoSwitch *repeatForeverSwitch;
@@ -38,8 +32,8 @@ static CGFloat const kSwitchHeight = 30.f;
 
 @property (nonatomic, strong) UIImageView *imageView;
 
-@property (nonatomic, strong) UISlider *radiusSlider;
-@property (nonatomic, strong) UISlider *framesCountSlider;
+@property (nonatomic, strong) TYDemoSlider *radiusSlider;
+@property (nonatomic, strong) TYDemoSlider *framesCountSlider;
 
 @property (nonatomic, strong) UILabel *radiusValueLabel;
 @property (nonatomic, strong) UILabel *framesCountValueLabel;
@@ -76,14 +70,16 @@ static CGFloat const kSwitchHeight = 30.f;
     _imageView.animationRepeatCount = 1;
     [_contentScrollView addSubview:_imageView];
     
-    _radiusSlider = [[UISlider alloc] init];
-    _radiusSlider.maximumValue = 100;
-    [_radiusSlider addTarget:self action:@selector(onRadiusSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    _radiusSlider = [[TYDemoSlider alloc] init];
+    _radiusSlider.slider.maximumValue = 100;
+    _radiusSlider.title = @"Radius";
+    [_radiusSlider.slider addTarget:self action:@selector(onRadiusSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_radiusSlider];
     
-    _framesCountSlider = [[UISlider alloc] init];
-    _framesCountSlider.maximumValue = 100;
-    [_framesCountSlider addTarget:self action:@selector(onFramesCountSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    _framesCountSlider = [[TYDemoSlider alloc] init];
+    _framesCountSlider.slider.maximumValue = 100;
+    _framesCountSlider.title = @"Frames Count";
+    [_framesCountSlider.slider addTarget:self action:@selector(onFramesCountSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_framesCountSlider];
     
     _tintColorSwitch = [[TYDemoSwitch alloc] init];
@@ -103,14 +99,6 @@ static CGFloat const kSwitchHeight = 30.f;
 
 - (void)setupLabels
 {
-    _radiusLabel = [[UILabel alloc] init];
-    _radiusLabel.text = @"Radius";
-    [_contentScrollView addSubview:_radiusLabel];
-    
-    _framesCountLabel = [[UILabel alloc] init];
-    _framesCountLabel.text = @"Frames Count";
-    [_contentScrollView addSubview:_framesCountLabel];
-    
     _radiusValueLabel = [[UILabel alloc] init];
     _radiusValueLabel.text = [NSString stringWithFormat:@"Radius: %.1f", _radiusSlider.value];
     _radiusValueLabel.textAlignment = NSTextAlignmentCenter;
@@ -134,21 +122,11 @@ static CGFloat const kSwitchHeight = 30.f;
 
 - (void)layoutSubviews
 {
-    [_radiusLabel sizeToFit];
-    
     CGFloat fullWidth = CGRectGetWidth(self.view.bounds);
     
-    _radiusLabel.frame = CGRectMake(kLabelMarginLeft, kFirstSliderMarginTop, CGRectGetWidth(_radiusLabel.bounds), CGRectGetHeight(_radiusLabel.bounds));
+    _radiusSlider.frame = CGRectMake(0, 0, fullWidth, kSliderHeight);
     
-    [_framesCountLabel sizeToFit];
-    _framesCountLabel.frame = CGRectMake(kLabelMarginLeft, CGRectGetMaxY(_radiusLabel.frame), CGRectGetWidth(_framesCountLabel.bounds), CGRectGetHeight(_framesCountLabel.bounds));
-    
-    CGFloat radiusLabelMaxX = CGRectGetMaxX(_radiusLabel.frame);
-    CGFloat framesCountMaxX = CGRectGetMaxX(_framesCountLabel.frame);
-    
-    _radiusSlider.frame = CGRectMake(radiusLabelMaxX, kFirstSliderMarginTop, fullWidth - radiusLabelMaxX - kSliderMarginRight, kSliderHeight);
-    
-    _framesCountSlider.frame = CGRectMake(framesCountMaxX, CGRectGetMaxY(_radiusSlider.frame) + kFirstSliderMarginTop, fullWidth - framesCountMaxX - kSliderMarginRight, kSliderHeight);
+    _framesCountSlider.frame = CGRectMake(0, CGRectGetMaxY(_radiusSlider.frame), fullWidth, kSliderHeight);
     
     _tintColorSwitch.frame = CGRectMake(0, CGRectGetMaxY(_framesCountSlider.frame), fullWidth, kSwitchHeight);
     

@@ -18,6 +18,7 @@
 		706466B41C17222600149225 /* TYMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466B31C17222600149225 /* TYMenuTableViewController.m */; };
 		706466B71C17261900149225 /* TYPlayAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466B61C17261900149225 /* TYPlayAnimationViewController.m */; };
 		706466BA1C17548500149225 /* TYDemoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466B91C17548500149225 /* TYDemoSwitch.m */; };
+		706466BD1C1758DC00149225 /* TYDemoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466BC1C1758DC00149225 /* TYDemoSlider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		706466B61C17261900149225 /* TYPlayAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPlayAnimationViewController.m; sourceTree = "<group>"; };
 		706466B81C17548500149225 /* TYDemoSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDemoSwitch.h; sourceTree = "<group>"; };
 		706466B91C17548500149225 /* TYDemoSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDemoSwitch.m; sourceTree = "<group>"; };
+		706466BB1C1758DC00149225 /* TYDemoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDemoSlider.h; sourceTree = "<group>"; };
+		706466BC1C1758DC00149225 /* TYDemoSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDemoSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 				702564401C15F43F0085F7DD /* TYAppDelegate.m */,
 				706466B81C17548500149225 /* TYDemoSwitch.h */,
 				706466B91C17548500149225 /* TYDemoSwitch.m */,
+				706466BB1C1758DC00149225 /* TYDemoSlider.h */,
+				706466BC1C1758DC00149225 /* TYDemoSlider.m */,
 				706466B21C17222600149225 /* TYMenuTableViewController.h */,
 				706466B31C17222600149225 /* TYMenuTableViewController.m */,
 				706466B51C17261900149225 /* TYPlayAnimationViewController.h */,
@@ -191,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				706466B71C17261900149225 /* TYPlayAnimationViewController.m in Sources */,
+				706466BD1C1758DC00149225 /* TYDemoSlider.m in Sources */,
 				702564441C15F43F0085F7DD /* TYViewController.m in Sources */,
 				7025643E1C15F4120085F7DD /* UIImageView+BlurAnimation.m in Sources */,
 				7025643D1C15F4120085F7DD /* UIImageEffects.m in Sources */,
