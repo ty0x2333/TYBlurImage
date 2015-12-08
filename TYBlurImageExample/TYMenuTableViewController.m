@@ -13,6 +13,9 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 
 @interface TYMenuTableViewController ()
 
+@property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, strong) NSDictionary *viewControllersMap;
+
 @end
 
 @implementation TYMenuTableViewController
@@ -21,6 +24,12 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellIdentifier];
+    
+    _titles = @[@"Blur Image", @"Play Blur Animation"];
+    
+    _viewControllersMap = @{@"Blur Image": @"TYViewController",
+                            @"Play Blur Animation": @"TYPlayAnimationViewController"
+                            };
 }
 
 #pragma mark - Table view data source
@@ -32,7 +41,7 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return _titles.count;
 }
 
 
@@ -40,15 +49,15 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = @"Play Animation";
+    cell.textLabel.text = _titles[indexPath.row];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TYPlayAnimationViewController *playAnimationViewController = [[TYPlayAnimationViewController alloc] init];
-    [self.navigationController pushViewController:playAnimationViewController animated:NO];
+    Class viewControllerClass = NSClassFromString(_viewControllersMap[_titles[indexPath.row]]);
+    [self.navigationController pushViewController:[[viewControllerClass alloc] init] animated:NO];
 }
 
 /*

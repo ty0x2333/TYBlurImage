@@ -8,6 +8,7 @@
 
 #import "TYPlayAnimationViewController.h"
 #import "UIImageView+BlurAnimation.h"
+#import "TYDemoSwitch.h"
 
 static CGFloat const kButtonHeight = 50.f;
 
@@ -27,11 +28,9 @@ static CGFloat const kSwitchHeight = 30.f;
 
 @property (nonatomic, strong) UILabel *radiusLabel;
 @property (nonatomic, strong) UILabel *framesCountLabel;
-@property (nonatomic, strong) UILabel *tintColorLabel;
-@property (nonatomic, strong) UILabel *repeatForeverLabel;
 
-@property (nonatomic, strong) UISwitch *tintColorSwitch;
-@property (nonatomic, strong) UISwitch *repeatForeverSwitch;
+@property (nonatomic, strong) TYDemoSwitch *tintColorSwitch;
+@property (nonatomic, strong) TYDemoSwitch *repeatForeverSwitch;
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 
@@ -87,10 +86,14 @@ static CGFloat const kSwitchHeight = 30.f;
     [_framesCountSlider addTarget:self action:@selector(onFramesCountSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_framesCountSlider];
     
-    _tintColorSwitch = [[UISwitch alloc] init];
+    _tintColorSwitch = [[TYDemoSwitch alloc] init];
+    _tintColorSwitch.title = @"Use Tint Color";
+    [_tintColorSwitch.contentSwitch addTarget:self action:@selector(onTintColorSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_tintColorSwitch];
     
-    _repeatForeverSwitch = [[UISwitch alloc] init];
+    _repeatForeverSwitch = [[TYDemoSwitch alloc] init];
+    _repeatForeverSwitch.title = @"Repeat Forever";
+    [_repeatForeverSwitch.contentSwitch addTarget:self action:@selector(onTintColorSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_repeatForeverSwitch];
     
     [self setupLabels];
@@ -117,16 +120,6 @@ static CGFloat const kSwitchHeight = 30.f;
     _framesCountValueLabel.text = [NSString stringWithFormat:@"Frames Count: %d", (NSInteger)_framesCountSlider.value];
     _framesCountValueLabel.textAlignment = NSTextAlignmentCenter;
     [_contentScrollView addSubview:_framesCountValueLabel];
-    
-    _tintColorLabel = [[UILabel alloc] init];
-    _tintColorLabel.textAlignment = NSTextAlignmentCenter;
-    _tintColorLabel.text = @"Use Tint Color";
-    [_contentScrollView addSubview:_tintColorLabel];
-    
-    _repeatForeverLabel = [[UILabel alloc] init];
-    _repeatForeverLabel.textAlignment = NSTextAlignmentCenter;
-    _repeatForeverLabel.text = @"Repeat Forever";
-    [_contentScrollView addSubview:_repeatForeverLabel];
 
 }
 
@@ -157,27 +150,9 @@ static CGFloat const kSwitchHeight = 30.f;
     
     _framesCountSlider.frame = CGRectMake(framesCountMaxX, CGRectGetMaxY(_radiusSlider.frame) + kFirstSliderMarginTop, fullWidth - framesCountMaxX - kSliderMarginRight, kSliderHeight);
     
-    _tintColorLabel.frame = CGRectMake(0,
-                                       CGRectGetMaxY(_framesCountSlider.frame),
-                                       fullWidth / 2,
-                                       kLabelHeight
-                                       );
-    _tintColorSwitch.frame = CGRectMake(CGRectGetMaxX(_tintColorLabel.frame),
-                                        CGRectGetMaxY(_framesCountSlider.frame),
-                                        fullWidth / 2 - CGRectGetWidth(_tintColorLabel.bounds),
-                                        kSwitchHeight
-                                        );
+    _tintColorSwitch.frame = CGRectMake(0, CGRectGetMaxY(_framesCountSlider.frame), fullWidth, kSwitchHeight);
     
-    _repeatForeverLabel.frame = CGRectMake(0,
-                                           CGRectGetMaxY(_tintColorLabel.frame),
-                                           fullWidth / 2,
-                                           kLabelHeight
-                                           );
-    _repeatForeverSwitch.frame = CGRectMake(CGRectGetMaxX(_repeatForeverLabel.frame),
-                                            CGRectGetMaxY(_tintColorSwitch.frame),
-                                            fullWidth / 2,
-                                            kSwitchHeight
-                                            );
+    _repeatForeverSwitch.frame = CGRectMake(0, CGRectGetMaxY(_tintColorSwitch.frame), fullWidth, kSwitchHeight);
     
     _imageView.frame = CGRectMake(CGRectGetMidX(self.view.frame) - CGRectGetWidth(_imageView.bounds) / 2,
                                   CGRectGetMaxY(_repeatForeverSwitch.frame),
