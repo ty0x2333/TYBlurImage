@@ -153,19 +153,19 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 - (void)setFramesCount:(NSInteger)framesCount
 {
     NSNumber *number = [NSNumber numberWithInteger:framesCount];
-    objc_setAssociatedObject(self, &kFramesCountKey, number, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &kFramesCountKey, number, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setBlurRadius:(CGFloat)blurRadius
 {
     NSNumber *number = [NSNumber numberWithFloat:blurRadius];
-    objc_setAssociatedObject(self, &kBlurRadiusKey, number, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &kBlurRadiusKey, number, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setDownsampleBlurAnimationImage:(BOOL)downsampleBlurAnimationImage
 {
     NSNumber *number = [NSNumber numberWithBool:downsampleBlurAnimationImage];
-    objc_setAssociatedObject(self, &kDownsampleBlurAnimationImageKey, number, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &kDownsampleBlurAnimationImageKey, number, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Getter
