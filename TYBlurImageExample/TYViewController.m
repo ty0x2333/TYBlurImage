@@ -9,100 +9,211 @@
 #import "TYViewController.h"
 #import "UIImageEffects.h"
 #import "UIImageView+BlurAnimation.h"
+#import "TYDemoSwitch.h"
+#import "TYDemoSlider.h"
 
-static CGFloat const kButtonHeight = 30;
-static CGFloat const kSliderHeight = 20;
-static CGFloat const kSliderMarginHorizontal = 50;
+static CGFloat const kButtonHeight = 30.f;
+static CGFloat const kSliderHeight = 40.f;
+static CGFloat const kSwitchHeight = 30.f;
+
+static CGFloat const kResetToSourceButtonCornerRadius = 5.f;
+
+static CGFloat const kResetToSourceButtonTitleMarginHorizontal = 8.f;
+static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
+
+#define kTiniColor [UIColor colorWithWhite:1.0 alpha:0.3]
+
 
 @interface TYViewController ()
 {
     UIButton *_currentButton;
 }
 
+@property (nonatomic, strong) NSMutableArray *controlButtons;
+
+@property (nonatomic, strong) TYDemoSlider *radiusSlider;
+@property (nonatomic, strong) TYDemoSlider *saturationSlider;
+
+@property (nonatomic, strong) TYDemoSwitch *tintColorSwitch;
+
+@property (nonatomic, strong) UIScrollView *contentScrollView;
+
 @property (nonatomic, strong) UIImageView *imageView;
 
 @property (nonatomic, strong) UIImage *sourceImage;
 
-@property (nonatomic, strong) UILabel *valueLabel;
+@property (nonatomic, strong) UILabel *radiusValueLabel;
+@property (nonatomic, strong) UILabel *saturationValueLabel;
+
+@property (nonatomic, strong) UILabel *defaultEffectsLabel;
+
+@property (nonatomic, strong) UIButton *resetToSourceButton;
 
 @end
 
 @implementation TYViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    _contentScrollView = [[UIScrollView alloc] init];
+    [self.view addSubview:_contentScrollView];
+    
     _sourceImage = [UIImage imageNamed:@"lena.jpg"];
     
+    _radiusSlider = [[TYDemoSlider alloc] init];
+    _radiusSlider.title = @"Radius";
+    [_radiusSlider.slider addTarget:self action:@selector(onRadiusSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    _radiusSlider.slider.maximumValue = 100;
+    [_contentScrollView addSubview:_radiusSlider];
+    
+    _saturationSlider = [[TYDemoSlider alloc] init];
+    _saturationSlider.title = @"Saturation";
+    [_saturationSlider.slider addTarget:self action:@selector(onSaturationSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    _saturationSlider.slider.value = 1;
+    _saturationSlider.slider.maximumValue = 10;
+    [_contentScrollView addSubview:_saturationSlider];
+    
+    _tintColorSwitch = [[TYDemoSwitch alloc] init];
+    [_tintColorSwitch.contentSwitch addTarget:self action:@selector(onTintColorSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
+    _tintColorSwitch.title = @"Use Tint Color";
+    [_contentScrollView addSubview:_tintColorSwitch];
+    
+    _radiusValueLabel = [[UILabel alloc] init];
+    _radiusValueLabel.textAlignment = NSTextAlignmentCenter;
+    _radiusValueLabel.text = [NSString stringWithFormat:@"Radius: %.0f", _radiusSlider.value];
+    [_contentScrollView addSubview:_radiusValueLabel];
+    
+    _saturationValueLabel = [[UILabel alloc] init];
+    _saturationValueLabel.textAlignment = NSTextAlignmentCenter;
+    _saturationValueLabel.text = [NSString stringWithFormat:@"Saturation: %.0f", _saturationSlider.value];
+    [_contentScrollView addSubview:_saturationValueLabel];
+    
     _imageView = [[UIImageView alloc] initWithImage:_sourceImage];
-    _imageView.center = self.view.center;
-    [self.view addSubview:_imageView];
+    [_contentScrollView addSubview:_imageView];
     
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(kSliderMarginHorizontal, CGRectGetHeight(self.view.bounds) - 3 * kButtonHeight - kSliderHeight, CGRectGetWidth(self.view.bounds) - 2 * kSliderMarginHorizontal, kSliderHeight)];
-    [slider addTarget:self action:@selector(onSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    slider.maximumValue = 100;
-    [self.view addSubview:slider];
+    _defaultEffectsLabel = [[UILabel alloc] init];
+    _defaultEffectsLabel.textAlignment = NSTextAlignmentCenter;
+    _defaultEffectsLabel.text = @"Default Effects";
+    _defaultEffectsLabel.layer.borderWidth = 1.f;
+    [_contentScrollView addSubview:_defaultEffectsLabel];
     
-    _valueLabel = [[UILabel alloc] init];
-    _valueLabel.text = [NSString stringWithFormat:@"%.0f", slider.value];
-    [_valueLabel sizeToFit];
-    _valueLabel.frame = CGRectMake(self.view.center.x - CGRectGetWidth(_valueLabel.bounds) / 2, CGRectGetMinY(slider.frame) - CGRectGetHeight(_valueLabel.bounds), CGRectGetWidth(_valueLabel.bounds), CGRectGetHeight(_valueLabel.bounds));
-    [self.view addSubview:_valueLabel];
+    _resetToSourceButton = [[UIButton alloc] init];
+    _resetToSourceButton.backgroundColor = [UIColor grayColor];
+    _resetToSourceButton.layer.cornerRadius = kResetToSourceButtonCornerRadius;
+    [_resetToSourceButton setTitle:@"Reset to source image" forState:UIControlStateNormal];
+    [_resetToSourceButton addTarget:self action:@selector(onSourceButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_contentScrollView addSubview:_resetToSourceButton];
     
     [self setupButtons];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    CGFloat fullWidth = CGRectGetWidth(self.view.bounds);
+    
+    _contentScrollView.frame = self.view.bounds;
+    
+    _radiusSlider.frame = CGRectMake(0, 0, fullWidth, kSliderHeight);
+    
+    _saturationSlider.frame = CGRectMake(0, CGRectGetMaxY(_radiusSlider.frame), fullWidth, kSliderHeight);
+    
+    _tintColorSwitch.frame = CGRectMake(0, CGRectGetMaxY(_saturationSlider.frame), fullWidth, kSwitchHeight);
+    
+    _radiusValueLabel.frame = CGRectMake(0, CGRectGetMaxY(_tintColorSwitch.frame),
+                                         fullWidth / 2,
+                                         CGRectGetHeight(_radiusValueLabel.bounds));
+    
+    _saturationValueLabel.frame = CGRectMake(fullWidth / 2, CGRectGetMaxY(_tintColorSwitch.frame),
+                                             fullWidth / 2,
+                                             CGRectGetHeight(_radiusValueLabel.bounds));
+    
+    _imageView.frame = CGRectMake((fullWidth - CGRectGetWidth(_imageView.frame)) / 2,
+                                  CGRectGetMaxY(_radiusValueLabel.frame),
+                                  CGRectGetWidth(_imageView.frame),
+                                  CGRectGetHeight(_imageView.frame)
+                                  );
+    [_resetToSourceButton.titleLabel sizeToFit];
+    _resetToSourceButton.bounds = _resetToSourceButton.titleLabel.bounds;
+    _resetToSourceButton.frame = CGRectMake((fullWidth - CGRectGetWidth(_resetToSourceButton.bounds) - 2 * kResetToSourceButtonTitleMarginHorizontal) / 2,
+                                            CGRectGetMaxY(_imageView.frame) + kResetToSourceButtonTitleMarginVertical,
+                                            CGRectGetWidth(_resetToSourceButton.bounds) + 2 * kResetToSourceButtonTitleMarginHorizontal,
+                                            kButtonHeight
+                                            );
+    [_defaultEffectsLabel sizeToFit];
+    _defaultEffectsLabel.frame = CGRectMake(0,
+                                            CGRectGetMaxY(_resetToSourceButton.frame) + kResetToSourceButtonTitleMarginVertical,
+                                            fullWidth, CGRectGetHeight(_defaultEffectsLabel.bounds)
+                                            );
+    
+    CGFloat buttonWidth = CGRectGetWidth(self.view.bounds) / 2;
+    CGRect firstButtonFrame = CGRectMake(0, CGRectGetMaxY(_defaultEffectsLabel.frame),
+                                         CGRectGetWidth(self.view.bounds) / 2, kButtonHeight
+                                         );
+    
+    [_controlButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
+        button.frame = CGRectOffset(firstButtonFrame, (idx % 2) * buttonWidth, (idx / 2) * kButtonHeight);
+    }];
+    
+    _contentScrollView.contentSize = CGSizeMake(fullWidth, CGRectGetMaxY([[_controlButtons lastObject] frame]));
+
 }
 
 #pragma mark - Setup
 
 - (void)setupButtons
 {
-    NSArray *buttonTitles = @[@"Source", @"Play Animation", @"Dark Bulr", @"Light Bulr", @"Extra Light Bulr", @"Tint Blur"];
-    NSDictionary *attributesDictionary = @{@"Source": @"onSourceButtonClicked:",
-                                           @"Play Animation": @"onPlayAnimationButtonClicked:",
-                                           @"Dark Bulr": @"onDarkBlurButtonClicked:",
-                                           @"Light Bulr": @"onLightBlurButtonClicked:",
-                                           @"Extra Light Bulr": @"onExtraLightBlurButtonClicked:",
+    NSArray *buttonTitles = @[@"Dark Blur", @"Light Blur", @"Extra Light Blur", @"Tint Blur"];
+    NSDictionary *attributesDictionary = @{@"Dark Blur": @"onDarkBlurButtonClicked:",
+                                           @"Light Blur": @"onLightBlurButtonClicked:",
+                                           @"Extra Light Blur": @"onExtraLightBlurButtonClicked:",
                                            @"Tint Blur": @"onTintBlurButtonClicked:"
                                            };
-
-    CGFloat buttonWidth = CGRectGetWidth(self.view.bounds) / 2;
-    CGRect firstButtonFrame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 3 * kButtonHeight,
-                                         CGRectGetWidth(self.view.bounds) / 2, kButtonHeight);
+    _controlButtons = [NSMutableArray arrayWithCapacity:buttonTitles.count];
     
     [buttonTitles enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectOffset(firstButtonFrame, (idx % 2) * buttonWidth, (idx / 2) * kButtonHeight)];
+        UIButton *button = [[UIButton alloc] init];
         [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [button addTarget:self action:NSSelectorFromString(attributesDictionary[title]) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:title forState:UIControlStateNormal];
-        [self.view addSubview:button];
+        [_contentScrollView addSubview:button];
+        [_controlButtons addObject:button];
     }];
 }
 
 #pragma mark - Event Response
 
-- (void)onPlayAnimationButtonClicked:(UIButton *)sender
+- (void)onTintColorSwitchValueChanged:(UISwitch *)sender
 {
-    _imageView.blurRadius = 20;
-    _imageView.framesCount = 20;
-    _imageView.blurTintColor = [UIColor colorWithWhite:1.0 alpha:0.3];
-    [_imageView ty_blurInAnimationWithDuration:0.25f completion:^{
-        NSLog(@"Animation End");
-    }];
+    UIColor *tintColor = _tintColorSwitch.isOn ? kTiniColor : [UIColor clearColor];
+    _imageView.image = [UIImageEffects imageByApplyingBlurToImage:_sourceImage withRadius:_radiusSlider.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
 }
 
-- (void)onSliderValueChanged:(UISlider *)sender
+- (void)onRadiusSliderValueChanged:(UISlider *)sender
 {
-    _valueLabel.text = [NSString stringWithFormat:@"%.0f", sender.value];
-    [_valueLabel sizeToFit];
-    UIColor *tintColor = [UIColor colorWithWhite:1.0 alpha:0.3];
-    _imageView.image = [UIImageEffects imageByApplyingBlurToImage:_sourceImage withRadius:sender.value tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
+    _radiusValueLabel.text = [NSString stringWithFormat:@"Radius: %.1f", sender.value];
+    UIColor *tintColor = _tintColorSwitch.isOn ? kTiniColor : nil;
+    _imageView.image = [UIImageEffects imageByApplyingBlurToImage:_sourceImage withRadius:sender.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
+}
+
+- (void)onSaturationSliderValueChanged:(UISlider *)sender
+{
+    _saturationValueLabel.text = [NSString stringWithFormat:@"Radius: %.1f", sender.value];
+    UIColor *tintColor = _tintColorSwitch.isOn ? kTiniColor : nil;
+    _imageView.image = [UIImageEffects imageByApplyingBlurToImage:_sourceImage withRadius:sender.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
 }
 
 - (void)onSourceButtonClicked:(UIButton *)sender
 {
     _currentButton = sender;
+    _saturationSlider.slider.value = 1;
+    _radiusSlider.slider.value = 0;
+    _tintColorSwitch.on = NO;
     _imageView.image = _sourceImage;
 }
 - (void)onLightBlurButtonClicked:(UIButton *)sender
