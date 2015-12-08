@@ -41,7 +41,7 @@ static const char kBlurRadiusKey = '\0';
     [self ty_layoutSubviews];
     
     self.baseImage = self.image;
-    [self ty_generateBlurFrames];
+    [self ty_generateBlurFrames:nil];
     
     // Defaults
     self.animationDuration = 0.1f;
@@ -58,7 +58,7 @@ static const char kBlurRadiusKey = '\0';
 
 #pragma mark - Animation Methods
 
-- (void)ty_generateBlurFrames
+- (void)ty_generateBlurFrames:(void(^)())completion
 {
     if (!self.baseImage) {
         return;
@@ -76,7 +76,7 @@ static const char kBlurRadiusKey = '\0';
     
     UIImage *downsampledImage = [self ty_downsampleImage];
     
-    for (int i = 0; i < frameCount; i++) {
+    for (NSUInteger i = 0; i < frameCount; i++) {
         
         CGFloat process = (CGFloat)i / frameCount;
         UIImage *blurredImage = [UIImageEffects imageByApplyingBlurToImage:downsampledImage
@@ -90,6 +90,7 @@ static const char kBlurRadiusKey = '\0';
         [self.framesArray addObject:blurredImage];
         [self.framesReverseArray insertObject:blurredImage atIndex:0];
     }
+    completion();
 }
 
 - (void)ty_blurInAnimationWithDuration:(CGFloat)duration
@@ -153,7 +154,7 @@ static const char kBlurRadiusKey = '\0';
         return;
     }
     objc_setAssociatedObject(self, &kBlurTintColorKey, blurTintColor, OBJC_ASSOCIATION_RETAIN);
-    [self ty_generateBlurFrames];
+    [self ty_generateBlurFrames:nil];
 }
 
 - (void)setFramesCount:(NSInteger)framesCount
@@ -179,7 +180,7 @@ static const char kBlurRadiusKey = '\0';
     }
     NSNumber *number = [NSNumber numberWithFloat:blurRadius];
     objc_setAssociatedObject(self, &kBlurRadiusKey, number, OBJC_ASSOCIATION_ASSIGN);
-    [self ty_generateBlurFrames];
+    [self ty_generateBlurFrames:nil];
 }
 
 #pragma mark - Getter

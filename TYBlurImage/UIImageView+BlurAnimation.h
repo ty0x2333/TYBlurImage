@@ -22,6 +22,13 @@
 
 @property (nonatomic, assign) CGFloat blurRadius;
 
+/**
+ *  @brief  Regenerates blur animation frames.
+ *
+ *  @param completion completion callback
+ */
+- (void)ty_generateBlurFrames:(void(^)())completion;
+
 - (void)ty_blurInAnimationWithDuration:(CGFloat)duration;
 
 - (void)ty_blurOutAnimationWithDuration:(CGFloat)duration;
