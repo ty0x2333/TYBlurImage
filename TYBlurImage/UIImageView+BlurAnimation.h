@@ -29,13 +29,16 @@
 @property (strong) UIColor *blurTintColor;
 
 /**
- *  @brief  Number of frames
+ *  @brief  number of frames
  *
  *  default value is 5.
  *  @note   Increasing this can cause your app to have huge memory issues. Lower is better, especially when dealing with really fast animations.
  */
 @property (assign) NSInteger framesCount;
 
+/**
+ *  @brief  the blur amount
+ */
 @property (nonatomic, assign) CGFloat blurRadius;
 
 /**
@@ -47,7 +50,7 @@
 @property (nonatomic, assign) BOOL downsampleBlurAnimationImage;
 
 /**
- *  @brief  Regenerates blur animation frames.
+ *  @brief  regenerates blur animation frames.
  *
  *  @param completion completion callback
  */

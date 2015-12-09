@@ -60,13 +60,10 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 
 - (void)ty_generateBlurFramesWithCompletion:(void(^)())completion
 {
-    NSLog(@"ty_generateBlurFramesWithCompletion");
     if (self.baseImage == nil) {
-        NSLog(@"baseImage is nil, init base image");
         self.baseImage = self.image;
     }
     if (self.baseImage) {
-        NSLog(@"==== start generate ====");
         self.framesArray = [[NSMutableArray alloc] init];
         self.framesReverseArray = [[NSMutableArray alloc] init];
         
@@ -94,7 +91,6 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
             [self.framesArray addObject:blurredImage];
             [self.framesReverseArray insertObject:blurredImage atIndex:0];
         }
-        NSLog(@"==== end generate ====");
     }
     if (completion) {
         completion();
@@ -113,9 +109,7 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 
 - (void)ty_blurInAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
 {
-    NSLog(@"ty_blurInAnimationWithDuration");
     if (self.framesArray == nil) {
-        NSLog(@"framesArray is nil, init generate blur frames");
         [self ty_generateBlurFramesWithCompletion:^{
             [self ty_blurInAnimationWithDuration:duration completion:completion];
         }];
@@ -137,9 +131,7 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
 
 - (void)ty_blurOutAnimationWithDuration:(CGFloat)duration completion:(void(^)())completion
 {
-    NSLog(@"ty_blurOutAnimationWithDuration");
     if (self.framesReverseArray == nil) {
-        NSLog(@"framesReverseArray is nil, init generate blur frames");
         [self ty_generateBlurFramesWithCompletion:^{
             [self ty_blurOutAnimationWithDuration:duration completion:completion];
         }];
