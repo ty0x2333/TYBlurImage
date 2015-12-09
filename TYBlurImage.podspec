@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = 'TYBlurImage'
-    s.version      = '1.0.0'
+    s.version      = '1.1.0'
     s.summary      = 'An easy way to set up blur effect and play the animation.'
     s.homepage     = 'https://github.com/luckytianyiyan/TYBlurImage'
     s.license      = 'MIT'
