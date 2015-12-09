@@ -39,7 +39,7 @@
 /**
  *  @brief  the blur amount
  */
-@property (nonatomic, assign) CGFloat blurRadius;
+@property (nonatomic) CGFloat blurRadius;
 
 /**
  *  @brief  need downsample image when play blur animation
@@ -47,7 +47,7 @@
  *  default value is true
  *  @note   Downsamples the image so we avoid needing to blur a huge image.
  */
-@property (nonatomic, assign) BOOL downsampleBlurAnimationImage;
+@property (nonatomic, getter = isDownsampleBlurAnimationImage) BOOL downsampleBlurAnimationImage;
 
 /**
  *  @brief  regenerates blur animation frames.

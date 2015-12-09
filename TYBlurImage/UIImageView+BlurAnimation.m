@@ -36,6 +36,8 @@ static const char kFramesReverseArrayKey = '\0';
 static const char kBlurRadiusKey = '\0';
 static const char kDownsampleBlurAnimationImageKey = '\0';
 
+static BOOL const kDownsampleBlurAnimationImage = YES;
+
 @interface UIImageView()
 
 @property (strong, nonatomic) UIImage *baseImage;
@@ -75,7 +77,7 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
             self.blurTintColor = [UIColor clearColor];
         }
         
-        UIImage *downsampledImage = self.downsampleBlurAnimationImage ? self.baseImage :[self ty_downsampleImage];
+        UIImage *downsampledImage = self.isDownsampleBlurAnimationImage ? [self ty_downsampleImage] : self.baseImage;
         
         for (NSUInteger i = 0; i < frameCount; i++) {
             
@@ -195,9 +197,13 @@ static const char kDownsampleBlurAnimationImageKey = '\0';
     return [number floatValue];
 }
 
-- (BOOL)downsampleBlurAnimationImage
+- (BOOL)isDownsampleBlurAnimationImage
 {
     NSNumber *number = objc_getAssociatedObject(self, &kDownsampleBlurAnimationImageKey);
+    if (number == nil) {
+        self.downsampleBlurAnimationImage = kDownsampleBlurAnimationImage;
+        return kDownsampleBlurAnimationImage;
+    }
     return [number boolValue];
 }
 
