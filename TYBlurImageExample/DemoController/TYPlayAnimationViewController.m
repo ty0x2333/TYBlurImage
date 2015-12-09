@@ -41,6 +41,7 @@ static CGFloat const kSwitchHeight = 30.f;
 
 @property (nonatomic, strong) TYDemoSwitch *tintColorSwitch;
 @property (nonatomic, strong) TYDemoSwitch *repeatForeverSwitch;
+@property (nonatomic, strong) TYDemoSwitch *downsampleSwitch;
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 
@@ -108,6 +109,12 @@ static CGFloat const kSwitchHeight = 30.f;
     [_repeatForeverSwitch.contentSwitch addTarget:self action:@selector(onTintColorSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_repeatForeverSwitch];
     
+    _downsampleSwitch = [[TYDemoSwitch alloc] init];
+    _downsampleSwitch.on = _imageView.isDownsampleBlurAnimationImage;
+    _downsampleSwitch.title = @"downsample";
+    [_downsampleSwitch.contentSwitch addTarget:self action:@selector(onDownsampleSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_contentScrollView addSubview:_downsampleSwitch];
+    
     [self setupLabels];
 }
 
@@ -148,8 +155,10 @@ static CGFloat const kSwitchHeight = 30.f;
     
     _repeatForeverSwitch.frame = CGRectMake(0, CGRectGetMaxY(_tintColorSwitch.frame), fullWidth, kSwitchHeight);
     
+    _downsampleSwitch.frame = CGRectMake(0, CGRectGetMaxY(_repeatForeverSwitch.frame), fullWidth, kSwitchHeight);
+    
     _imageView.frame = CGRectMake(CGRectGetMidX(self.view.frame) - CGRectGetWidth(_imageView.bounds) / 2,
-                                  CGRectGetMaxY(_repeatForeverSwitch.frame),
+                                  CGRectGetMaxY(_downsampleSwitch.frame),
                                   CGRectGetWidth(_imageView.bounds),
                                   CGRectGetHeight(_imageView.bounds)
                                   );
@@ -181,6 +190,12 @@ static CGFloat const kSwitchHeight = 30.f;
 }
 
 #pragma mark - Event Response
+
+- (void)onDownsampleSwitchValueChanged:(UISwitch *)sender
+{
+    _imageView.downsampleBlurAnimationImage = sender.isOn;
+    _isNeedRegenerateBlurFrames = YES;
+}
 
 - (void)onRepeatForeverSwitchValueChanged:(UISwitch *)sender
 {
