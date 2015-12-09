@@ -17,9 +17,14 @@ An easy way to set up blur effect and play the animation.
 
 ![Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImage.gif)
 
-## Installing `TYBlurImage`
+## Installation
 
-### Using CocoaPods
+### Installation with CocoaPods
+
+
+[CocoaPods](http://cocoapods.org/) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects. See the [Get Started](http://cocoapods.org/#get_started) section for more details.
+
+#### Podfile
 
 Add the following to your Podfile.
 
