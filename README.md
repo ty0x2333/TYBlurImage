@@ -9,17 +9,13 @@ An easy way to set up blur effect and play the animation.
 
 ## Example
 
-### Play Aniamtion
+### UIImageView Play Blur Aniamtion
 
-![Play Aniamtion Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/PlayAnimation.gif)
+![Play Aniamtion Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImageView.gif)
 
-### Default Effect
+### UIImage Blur Effects
 
-![Default Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/DefaultEffect.gif)
-
-### Custom Radius
-
-![Default Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/CustomRadius.gif)
+![Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImage.gif)
 
 ## Installing `TYBlurImage`
 
@@ -30,6 +26,29 @@ Add the following to your Podfile.
 ```
 pod 'TYBlurImage'
 ```
+
+## CHANGELOG
+
+### v1.1.0
+
+#### Bug fixes
+
+- Fix AssociationPolicy error
+
+- Passively generate animation frames.
+
+	Reference category will not affect the use of other UIImageView.
+
+- When the frame data is not generated, the problem caused by the animation is played.
+
+- image saturation mistake.
+
+#### New features
+
+- Add property downsampleBlurAnimationImage.
+
+	Now you can choose whether to downsample the image.
+
 
 ## License
 
