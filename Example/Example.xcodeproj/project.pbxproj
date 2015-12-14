@@ -1,0 +1,378 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		70FAFE431C1F3102008E7B57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE421C1F3102008E7B57 /* main.m */; };
+		70FAFE4C1C1F3102008E7B57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70FAFE4A1C1F3102008E7B57 /* Main.storyboard */; };
+		70FAFE4E1C1F3102008E7B57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70FAFE4D1C1F3102008E7B57 /* Assets.xcassets */; };
+		70FAFE511C1F3102008E7B57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70FAFE4F1C1F3102008E7B57 /* LaunchScreen.storyboard */; };
+		70FAFE5C1C1F312A008E7B57 /* TYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE591C1F312A008E7B57 /* TYAppDelegate.m */; };
+		70FAFE5D1C1F312A008E7B57 /* TYMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE5B1C1F312A008E7B57 /* TYMenuTableViewController.m */; };
+		70FAFE6A1C1F3137008E7B57 /* TYBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE601C1F3137008E7B57 /* TYBlurViewController.m */; };
+		70FAFE6B1C1F3137008E7B57 /* TYPlayAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE621C1F3137008E7B57 /* TYPlayAnimationViewController.m */; };
+		70FAFE6C1C1F3137008E7B57 /* TYDemoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE651C1F3137008E7B57 /* TYDemoSlider.m */; };
+		70FAFE6D1C1F3137008E7B57 /* TYDemoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE671C1F3137008E7B57 /* TYDemoSwitch.m */; };
+		70FAFE6E1C1F3137008E7B57 /* lena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70FAFE691C1F3137008E7B57 /* lena.jpg */; };
+		70FAFE741C1F316E008E7B57 /* UIImage+BlurEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE711C1F316E008E7B57 /* UIImage+BlurEffects.m */; };
+		70FAFE751C1F316E008E7B57 /* UIImageView+BlurAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFE731C1F316E008E7B57 /* UIImageView+BlurAnimation.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		70FAFE3E1C1F3102008E7B57 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		70FAFE421C1F3102008E7B57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		70FAFE4B1C1F3102008E7B57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		70FAFE4D1C1F3102008E7B57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70FAFE501C1F3102008E7B57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		70FAFE521C1F3102008E7B57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70FAFE581C1F312A008E7B57 /* TYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAppDelegate.h; sourceTree = "<group>"; };
+		70FAFE591C1F312A008E7B57 /* TYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAppDelegate.m; sourceTree = "<group>"; };
+		70FAFE5A1C1F312A008E7B57 /* TYMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYMenuTableViewController.h; sourceTree = "<group>"; };
+		70FAFE5B1C1F312A008E7B57 /* TYMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYMenuTableViewController.m; sourceTree = "<group>"; };
+		70FAFE5F1C1F3137008E7B57 /* TYBlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYBlurViewController.h; sourceTree = "<group>"; };
+		70FAFE601C1F3137008E7B57 /* TYBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYBlurViewController.m; sourceTree = "<group>"; };
+		70FAFE611C1F3137008E7B57 /* TYPlayAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPlayAnimationViewController.h; sourceTree = "<group>"; };
+		70FAFE621C1F3137008E7B57 /* TYPlayAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPlayAnimationViewController.m; sourceTree = "<group>"; };
+		70FAFE641C1F3137008E7B57 /* TYDemoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDemoSlider.h; sourceTree = "<group>"; };
+		70FAFE651C1F3137008E7B57 /* TYDemoSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDemoSlider.m; sourceTree = "<group>"; };
+		70FAFE661C1F3137008E7B57 /* TYDemoSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDemoSwitch.h; sourceTree = "<group>"; };
+		70FAFE671C1F3137008E7B57 /* TYDemoSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDemoSwitch.m; sourceTree = "<group>"; };
+		70FAFE691C1F3137008E7B57 /* lena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lena.jpg; sourceTree = "<group>"; };
+		70FAFE701C1F316E008E7B57 /* UIImage+BlurEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlurEffects.h"; sourceTree = "<group>"; };
+		70FAFE711C1F316E008E7B57 /* UIImage+BlurEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlurEffects.m"; sourceTree = "<group>"; };
+		70FAFE721C1F316E008E7B57 /* UIImageView+BlurAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+BlurAnimation.h"; sourceTree = "<group>"; };
+		70FAFE731C1F316E008E7B57 /* UIImageView+BlurAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+BlurAnimation.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70FAFE3B1C1F3102008E7B57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		70FAFE351C1F3101008E7B57 = {
+			isa = PBXGroup;
+			children = (
+				70FAFE401C1F3102008E7B57 /* Example */,
+				70FAFE3F1C1F3102008E7B57 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		70FAFE3F1C1F3102008E7B57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70FAFE3E1C1F3102008E7B57 /* Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70FAFE401C1F3102008E7B57 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				70FAFE6F1C1F316E008E7B57 /* TYBlurImage */,
+				70FAFE5E1C1F3137008E7B57 /* DemoController */,
+				70FAFE631C1F3137008E7B57 /* DemoView */,
+				70FAFE581C1F312A008E7B57 /* TYAppDelegate.h */,
+				70FAFE591C1F312A008E7B57 /* TYAppDelegate.m */,
+				70FAFE5A1C1F312A008E7B57 /* TYMenuTableViewController.h */,
+				70FAFE5B1C1F312A008E7B57 /* TYMenuTableViewController.m */,
+				70FAFE4A1C1F3102008E7B57 /* Main.storyboard */,
+				70FAFE4D1C1F3102008E7B57 /* Assets.xcassets */,
+				70FAFE4F1C1F3102008E7B57 /* LaunchScreen.storyboard */,
+				70FAFE521C1F3102008E7B57 /* Info.plist */,
+				70FAFE681C1F3137008E7B57 /* Resource */,
+				70FAFE411C1F3102008E7B57 /* Supporting Files */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		70FAFE411C1F3102008E7B57 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				70FAFE421C1F3102008E7B57 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		70FAFE5E1C1F3137008E7B57 /* DemoController */ = {
+			isa = PBXGroup;
+			children = (
+				70FAFE5F1C1F3137008E7B57 /* TYBlurViewController.h */,
+				70FAFE601C1F3137008E7B57 /* TYBlurViewController.m */,
+				70FAFE611C1F3137008E7B57 /* TYPlayAnimationViewController.h */,
+				70FAFE621C1F3137008E7B57 /* TYPlayAnimationViewController.m */,
+			);
+			path = DemoController;
+			sourceTree = "<group>";
+		};
+		70FAFE631C1F3137008E7B57 /* DemoView */ = {
+			isa = PBXGroup;
+			children = (
+				70FAFE641C1F3137008E7B57 /* TYDemoSlider.h */,
+				70FAFE651C1F3137008E7B57 /* TYDemoSlider.m */,
+				70FAFE661C1F3137008E7B57 /* TYDemoSwitch.h */,
+				70FAFE671C1F3137008E7B57 /* TYDemoSwitch.m */,
+			);
+			path = DemoView;
+			sourceTree = "<group>";
+		};
+		70FAFE681C1F3137008E7B57 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				70FAFE691C1F3137008E7B57 /* lena.jpg */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		70FAFE6F1C1F316E008E7B57 /* TYBlurImage */ = {
+			isa = PBXGroup;
+			children = (
+				70FAFE701C1F316E008E7B57 /* UIImage+BlurEffects.h */,
+				70FAFE711C1F316E008E7B57 /* UIImage+BlurEffects.m */,
+				70FAFE721C1F316E008E7B57 /* UIImageView+BlurAnimation.h */,
+				70FAFE731C1F316E008E7B57 /* UIImageView+BlurAnimation.m */,
+			);
+			name = TYBlurImage;
+			path = ../../TYBlurImage;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		70FAFE3D1C1F3102008E7B57 /* Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70FAFE551C1F3102008E7B57 /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				70FAFE3A1C1F3102008E7B57 /* Sources */,
+				70FAFE3B1C1F3102008E7B57 /* Frameworks */,
+				70FAFE3C1C1F3102008E7B57 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Example;
+			productName = Example;
+			productReference = 70FAFE3E1C1F3102008E7B57 /* Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		70FAFE361C1F3101008E7B57 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = luckytianyiyan;
+				TargetAttributes = {
+					70FAFE3D1C1F3102008E7B57 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 70FAFE391C1F3101008E7B57 /* Build configuration list for PBXProject "Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 70FAFE351C1F3101008E7B57;
+			productRefGroup = 70FAFE3F1C1F3102008E7B57 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				70FAFE3D1C1F3102008E7B57 /* Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		70FAFE3C1C1F3102008E7B57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70FAFE511C1F3102008E7B57 /* LaunchScreen.storyboard in Resources */,
+				70FAFE4E1C1F3102008E7B57 /* Assets.xcassets in Resources */,
+				70FAFE4C1C1F3102008E7B57 /* Main.storyboard in Resources */,
+				70FAFE6E1C1F3137008E7B57 /* lena.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70FAFE3A1C1F3102008E7B57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70FAFE751C1F316E008E7B57 /* UIImageView+BlurAnimation.m in Sources */,
+				70FAFE431C1F3102008E7B57 /* main.m in Sources */,
+				70FAFE741C1F316E008E7B57 /* UIImage+BlurEffects.m in Sources */,
+				70FAFE6B1C1F3137008E7B57 /* TYPlayAnimationViewController.m in Sources */,
+				70FAFE6D1C1F3137008E7B57 /* TYDemoSwitch.m in Sources */,
+				70FAFE5D1C1F312A008E7B57 /* TYMenuTableViewController.m in Sources */,
+				70FAFE6A1C1F3137008E7B57 /* TYBlurViewController.m in Sources */,
+				70FAFE6C1C1F3137008E7B57 /* TYDemoSlider.m in Sources */,
+				70FAFE5C1C1F312A008E7B57 /* TYAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		70FAFE4A1C1F3102008E7B57 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70FAFE4B1C1F3102008E7B57 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		70FAFE4F1C1F3102008E7B57 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70FAFE501C1F3102008E7B57 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		70FAFE531C1F3102008E7B57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		70FAFE541C1F3102008E7B57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		70FAFE561C1F3102008E7B57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Example/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tianyiyan.TYBlurImageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		70FAFE571C1F3102008E7B57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Example/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tianyiyan.TYBlurImageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70FAFE391C1F3101008E7B57 /* Build configuration list for PBXProject "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70FAFE531C1F3102008E7B57 /* Debug */,
+				70FAFE541C1F3102008E7B57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70FAFE551C1F3102008E7B57 /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70FAFE561C1F3102008E7B57 /* Debug */,
+				70FAFE571C1F3102008E7B57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 70FAFE361C1F3101008E7B57 /* Project object */;
+}
