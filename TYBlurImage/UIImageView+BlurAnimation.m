@@ -23,7 +23,7 @@
 //
 
 #import "UIImageView+BlurAnimation.h"
-#import "UIImageEffects.h"
+#import "UIImage+BlurEffects.h"
 #import <objc/runtime.h>
 
 static NSInteger const kDefaultFramesCount = 5;
@@ -36,7 +36,7 @@ static const char kFramesReverseArrayKey = '\0';
 static const char kBlurRadiusKey = '\0';
 static const char kDownsampleBlurAnimationImageKey = '\0';
 
-static BOOL const kDownsampleBlurAnimationImage = YES;
+static const BOOL kDownsampleBlurAnimationImage = YES;
 
 @interface UIImageView()
 
@@ -82,7 +82,7 @@ static BOOL const kDownsampleBlurAnimationImage = YES;
         for (NSUInteger i = 0; i < frameCount; i++) {
             
             CGFloat process = (CGFloat)i / frameCount;
-            UIImage *blurredImage = [UIImageEffects imageByApplyingBlurToImage:downsampledImage
+            UIImage *blurredImage = [UIImage ty_imageByApplyingBlurToImage:downsampledImage
                                                                     withRadius:process * self.blurRadius
                                                                      tintColor:self.blurTintColor
                                                          saturationDeltaFactor:1

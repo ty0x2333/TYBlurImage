@@ -32,7 +32,7 @@
  *  @brief  number of frames
  *
  *  default value is 5.
- *  @note   Increasing this can cause your app to have huge memory issues. Lower is better, especially when dealing with really fast animations.
+ *  @warning   Increasing this can cause your app to have huge memory issues. Lower is better, especially when dealing with really fast animations.
  */
 @property (assign) NSInteger framesCount;
 
@@ -45,14 +45,14 @@
  *  @brief  need downsample image when play blur animation
  *
  *  default value is true
- *  @note   Downsamples the image so we avoid needing to blur a huge image.
+ *  @warning   Downsamples the image so we avoid needing to blur a huge image.
  */
 @property (nonatomic, getter = isDownsampleBlurAnimationImage) BOOL downsampleBlurAnimationImage;
 
 /**
  *  @brief  regenerates blur animation frames.
  *
- *  @param completion completion callback
+ *  @param  completion completion callback
  */
 - (void)ty_generateBlurFramesWithCompletion:(void(^)())completion;
 

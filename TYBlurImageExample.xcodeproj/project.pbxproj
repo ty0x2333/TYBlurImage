@@ -10,7 +10,6 @@
 		702564191C15F31E0085F7DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 702564181C15F31E0085F7DD /* main.m */; };
 		702564241C15F31E0085F7DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 702564231C15F31E0085F7DD /* Assets.xcassets */; };
 		702564301C15F3A00085F7DD /* lena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7025642F1C15F3A00085F7DD /* lena.jpg */; };
-		7025643D1C15F4120085F7DD /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025643A1C15F4120085F7DD /* UIImageEffects.m */; };
 		7025643E1C15F4120085F7DD /* UIImageView+BlurAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025643C1C15F4120085F7DD /* UIImageView+BlurAnimation.m */; };
 		702564431C15F43F0085F7DD /* TYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 702564401C15F43F0085F7DD /* TYAppDelegate.m */; };
 		702564461C15F4900085F7DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 702564451C15F4900085F7DD /* LaunchScreen.storyboard */; };
@@ -19,6 +18,7 @@
 		706466C41C176E3800149225 /* TYDemoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466C21C176E3800149225 /* TYDemoSwitch.m */; };
 		706466CA1C176E6000149225 /* TYBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466C71C176E6000149225 /* TYBlurViewController.m */; };
 		706466CB1C176E6000149225 /* TYPlayAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706466C91C176E6000149225 /* TYPlayAnimationViewController.m */; };
+		70FAFDF71C1EA460008E7B57 /* UIImage+BlurEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FAFDF61C1EA460008E7B57 /* UIImage+BlurEffects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +27,6 @@
 		702564231C15F31E0085F7DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		702564281C15F31E0085F7DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7025642F1C15F3A00085F7DD /* lena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lena.jpg; sourceTree = "<group>"; };
-		702564391C15F4120085F7DD /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
-		7025643A1C15F4120085F7DD /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		7025643B1C15F4120085F7DD /* UIImageView+BlurAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+BlurAnimation.h"; sourceTree = "<group>"; };
 		7025643C1C15F4120085F7DD /* UIImageView+BlurAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+BlurAnimation.m"; sourceTree = "<group>"; };
 		7025643F1C15F43F0085F7DD /* TYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAppDelegate.h; sourceTree = "<group>"; };
@@ -44,6 +42,8 @@
 		706466C71C176E6000149225 /* TYBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYBlurViewController.m; sourceTree = "<group>"; };
 		706466C81C176E6000149225 /* TYPlayAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPlayAnimationViewController.h; sourceTree = "<group>"; };
 		706466C91C176E6000149225 /* TYPlayAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPlayAnimationViewController.m; sourceTree = "<group>"; };
+		70FAFDF51C1EA460008E7B57 /* UIImage+BlurEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlurEffects.h"; sourceTree = "<group>"; };
+		70FAFDF61C1EA460008E7B57 /* UIImage+BlurEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlurEffects.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +111,8 @@
 		702564381C15F4120085F7DD /* TYBlurImage */ = {
 			isa = PBXGroup;
 			children = (
-				702564391C15F4120085F7DD /* UIImageEffects.h */,
-				7025643A1C15F4120085F7DD /* UIImageEffects.m */,
+				70FAFDF51C1EA460008E7B57 /* UIImage+BlurEffects.h */,
+				70FAFDF61C1EA460008E7B57 /* UIImage+BlurEffects.m */,
 				7025643B1C15F4120085F7DD /* UIImageView+BlurAnimation.h */,
 				7025643C1C15F4120085F7DD /* UIImageView+BlurAnimation.m */,
 			);
@@ -214,12 +214,12 @@
 				706466C31C176E3800149225 /* TYDemoSlider.m in Sources */,
 				706466CA1C176E6000149225 /* TYBlurViewController.m in Sources */,
 				7025643E1C15F4120085F7DD /* UIImageView+BlurAnimation.m in Sources */,
-				7025643D1C15F4120085F7DD /* UIImageEffects.m in Sources */,
 				706466B41C17222600149225 /* TYMenuTableViewController.m in Sources */,
 				702564191C15F31E0085F7DD /* main.m in Sources */,
 				702564431C15F43F0085F7DD /* TYAppDelegate.m in Sources */,
 				706466CB1C176E6000149225 /* TYPlayAnimationViewController.m in Sources */,
 				706466C41C176E3800149225 /* TYDemoSwitch.m in Sources */,
+				70FAFDF71C1EA460008E7B57 /* UIImage+BlurEffects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

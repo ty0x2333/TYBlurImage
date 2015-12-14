@@ -128,7 +128,7 @@ static CGFloat const kSwitchHeight = 30.f;
     [_contentScrollView addSubview:_radiusValueLabel];
     
     _framesCountValueLabel = [[UILabel alloc] init];
-    _framesCountValueLabel.text = [NSString stringWithFormat:@"Frames Count: %d", (NSInteger)_framesCountSlider.value];
+    _framesCountValueLabel.text = [NSString stringWithFormat:@"Frames Count: %ld", (long)_framesCountSlider.value];
     _framesCountValueLabel.textAlignment = NSTextAlignmentCenter;
     [_contentScrollView addSubview:_framesCountValueLabel];
 
@@ -213,7 +213,7 @@ static CGFloat const kSwitchHeight = 30.f;
 
 - (void)onFramesCountSliderValueChanged:(UISlider *)sender
 {
-    _framesCountValueLabel.text = [NSString stringWithFormat:@"Frames Count: %d", (NSInteger)sender.value];
+    _framesCountValueLabel.text = [NSString stringWithFormat:@"Frames Count: %ld", (long)sender.value];
     _imageView.framesCount = (NSInteger)sender.value;
     _isNeedRegenerateBlurFrames = YES;
 }

@@ -24,7 +24,7 @@
 //
 
 #import "TYBlurViewController.h"
-#import "UIImageEffects.h"
+#import "UIImage+BlurEffects.h"
 #import "UIImageView+BlurAnimation.h"
 #import "TYDemoSwitch.h"
 #import "TYDemoSlider.h"
@@ -208,21 +208,21 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
 - (void)onTintColorSwitchValueChanged:(UISwitch *)sender
 {
     UIColor *tintColor = _tintColorSwitch.isOn ? kTiniColor : [UIColor clearColor];
-    _imageView.image = [UIImageEffects imageByApplyingBlurToImage:_sourceImage withRadius:_radiusSlider.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
+    _imageView.image = [UIImage ty_imageByApplyingBlurToImage:_sourceImage withRadius:_radiusSlider.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
 }
 
 - (void)onRadiusSliderValueChanged:(UISlider *)sender
 {
     _radiusValueLabel.text = [NSString stringWithFormat:@"Radius: %.1f", sender.value];
     UIColor *tintColor = _tintColorSwitch.isOn ? kTiniColor : nil;
-    _imageView.image = [UIImageEffects imageByApplyingBlurToImage:_sourceImage withRadius:sender.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
+    _imageView.image = [UIImage ty_imageByApplyingBlurToImage:_sourceImage withRadius:sender.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
 }
 
 - (void)onSaturationSliderValueChanged:(UISlider *)sender
 {
     _saturationValueLabel.text = [NSString stringWithFormat:@"Radius: %.1f", sender.value];
     UIColor *tintColor = _tintColorSwitch.isOn ? kTiniColor : nil;
-    _imageView.image = [UIImageEffects imageByApplyingBlurToImage:_sourceImage withRadius:sender.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
+    _imageView.image = [UIImage ty_imageByApplyingBlurToImage:_sourceImage withRadius:sender.value tintColor:tintColor saturationDeltaFactor:_saturationSlider.value maskImage:nil];
 }
 
 - (void)onSourceButtonClicked:(UIButton *)sender
@@ -236,22 +236,22 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
 - (void)onLightBlurButtonClicked:(UIButton *)sender
 {
     _currentButton = sender;
-    _imageView.image = [UIImageEffects imageByApplyingLightEffectToImage:_sourceImage];
+    _imageView.image = [UIImage ty_imageByApplyingLightEffectToImage:_sourceImage];
 }
 - (void)onExtraLightBlurButtonClicked:(UIButton *)sender
 {
     _currentButton = sender;
-    _imageView.image = [UIImageEffects imageByApplyingExtraLightEffectToImage:_sourceImage];
+    _imageView.image = [UIImage ty_imageByApplyingExtraLightEffectToImage:_sourceImage];
 }
 - (void)onDarkBlurButtonClicked:(UIButton *)sender
 {
     _currentButton = sender;
-    _imageView.image = [UIImageEffects imageByApplyingDarkEffectToImage:_sourceImage];
+    _imageView.image = [UIImage ty_imageByApplyingDarkEffectToImage:_sourceImage];
 }
 - (void)onTintBlurButtonClicked:(UIButton *)sender
 {
     _currentButton = sender;
-    _imageView.image = [UIImageEffects imageByApplyingTintEffectWithColor:[UIColor blueColor] toImage:_sourceImage];
+    _imageView.image = [UIImage ty_imageByApplyingTintEffectWithColor:[UIColor blueColor] toImage:_sourceImage];
 }
 
 @end
