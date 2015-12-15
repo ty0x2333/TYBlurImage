@@ -120,7 +120,7 @@ static const CGFloat kSaturationDeltaTintEffect = -1.f;
     CGRect outputImageRectInPoints = { CGPointZero, outputImageSizeInPoints };
     
     // Set up output context.
-    BOOL useOpaqueContext = [UIImage useOpaqueContext:inputCGImage];
+    BOOL useOpaqueContext = [UIImage p_useOpaqueContext:inputCGImage];
 
     UIGraphicsBeginImageContextWithOptions(outputImageRectInPoints.size, useOpaqueContext, inputImageScale);
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
@@ -217,7 +217,7 @@ static const CGFloat kSaturationDeltaTintEffect = -1.f;
         }
         
         CGImageRef effectCGImage;
-        if ( (effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, &cleanupBuffer, NULL, kvImageNoAllocate, NULL)) == NULL ) {
+        if ( (effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, NULL, NULL, kvImageNoAllocate, NULL)) == NULL ) {
             effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, NULL, NULL, kvImageNoFlags, NULL);
             free(inputBuffer->data);
         }
@@ -257,15 +257,9 @@ static const CGFloat kSaturationDeltaTintEffect = -1.f;
     return outputImage;
 }
 
-#pragma mark - Helper
+#pragma mark - Private Helper
 
-/**
- *  @brief  Helper function to handle deferred cleanup of a buffer.
- */
-void cleanupBuffer(void *userData, void *buf_data)
-{ free(buf_data); }
-
-+ (BOOL)useOpaqueContext:(CGImageRef)inputCGImage
++ (BOOL)p_useOpaqueContext:(CGImageRef)inputCGImage
 {
     CGBitmapInfo inputImageBitmapInfo = CGImageGetBitmapInfo(inputCGImage);
     CGImageAlphaInfo inputImageAlphaInfo = (inputImageBitmapInfo & kCGBitmapAlphaInfoMask);
