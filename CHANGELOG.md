@@ -19,3 +19,15 @@ CHANGELOG - TYBlurImage
 - Add property downsampleBlurAnimationImage.
 
 	Now you can choose whether to downsample the image.
+
+### v1.2.0
+
+- Use `UIImage+BlurEffects.h` replace `UIImageEffects.h`
+
+- The following method adds `ty_` prefix
+
+	* imageByApplyingLightEffectToImage:
+	* imageByApplyingExtraLightEffectToImage:
+	* imageByApplyingDarkEffectToImage:
+	* imageByApplyingTintEffectWithColor:
+	* imageByApplyingBlurToImage: withRadius: tintColor: saturationDeltaFactor: maskImage:
