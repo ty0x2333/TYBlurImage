@@ -32,29 +32,6 @@ Add the following to your Podfile.
 pod 'TYBlurImage'
 ```
 
-## CHANGELOG
-
-### v1.1.0
-
-#### Bug fixes
-
-- Fix AssociationPolicy error
-
-- Passively generate animation frames.
-
-	Reference category will not affect the use of other UIImageView.
-
-- When the frame data is not generated, the problem caused by the animation is played.
-
-- image saturation mistake.
-
-#### New features
-
-- Add property downsampleBlurAnimationImage.
-
-	Now you can choose whether to downsample the image.
-
-
 ## License
 
 `TYBlurImage` is available under the MIT license. See the LICENSE file for more info.
