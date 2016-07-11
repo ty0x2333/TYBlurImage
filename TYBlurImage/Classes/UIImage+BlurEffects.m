@@ -217,7 +217,7 @@ static const CGFloat kSaturationDeltaTintEffect = -1.f;
         }
         
         CGImageRef effectCGImage;
-        if ( (effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, NULL, NULL, kvImageNoAllocate, NULL)) == NULL ) {
+        if ( (effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, &cleanupBuffer, NULL, kvImageNoAllocate, NULL)) == NULL ) {
             effectCGImage = vImageCreateCGImageFromBuffer(inputBuffer, &format, NULL, NULL, kvImageNoFlags, NULL);
             free(inputBuffer->data);
         }
@@ -272,5 +272,7 @@ static const CGFloat kSaturationDeltaTintEffect = -1.f;
         return NO;
     }
 }
+
+void cleanupBuffer(void *userData, void *buf_data) { free(buf_data); }
 
 @end
