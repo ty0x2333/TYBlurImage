@@ -26,8 +26,7 @@
 #import "UIImageView+BlurAnimation.h"
 #import "TYDemoSwitch.h"
 #import "TYDemoSlider.h"
-
-static CGFloat const kButtonHeight = 50.f;
+#import <Masonry.h>
 
 static CGFloat const kSliderHeight = 40.f;
 
@@ -111,11 +110,68 @@ static CGFloat const kSwitchHeight = 30.f;
     
     _downsampleSwitch = [[TYDemoSwitch alloc] init];
     _downsampleSwitch.on = _imageView.isDownsampleBlurAnimationImage;
-    _downsampleSwitch.title = @"downsample";
+    _downsampleSwitch.title = @"Downsample";
     [_downsampleSwitch.contentSwitch addTarget:self action:@selector(onDownsampleSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_downsampleSwitch];
     
     [self setupLabels];
+    
+    [_contentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    [_radiusSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kSliderHeight));
+    }];
+    
+    [_framesCountSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.radiusSlider.mas_bottom);
+        make.left.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kSliderHeight));
+    }];
+    
+    [_tintColorSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.framesCountSlider.mas_bottom);
+        make.left.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kSwitchHeight));
+    }];
+    
+    [_repeatForeverSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tintColorSwitch.mas_bottom);
+        make.left.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kSwitchHeight));
+    }];
+    
+    [_downsampleSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.repeatForeverSwitch.mas_bottom);
+        make.left.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kSwitchHeight));
+    }];
+    
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentScrollView);
+        make.top.equalTo(self.downsampleSwitch.mas_bottom);
+    }];
+    
+    [_radiusValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentScrollView);
+        make.top.equalTo(self.imageView.mas_bottom);
+        make.width.equalTo(self.contentScrollView).multipliedBy(.5f);
+        make.height.equalTo(@(kLabelHeight));
+    }];
+    
+    [_framesCountValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.radiusValueLabel.mas_right);
+        make.top.equalTo(self.imageView.mas_bottom);
+        make.width.equalTo(self.contentScrollView).multipliedBy(.5f);
+        make.height.equalTo(@(kLabelHeight));
+    }];
 }
 
 #pragma mark - Setup
@@ -132,61 +188,18 @@ static CGFloat const kSwitchHeight = 30.f;
     _framesCountValueLabel.textAlignment = NSTextAlignmentCenter;
     [_contentScrollView addSubview:_framesCountValueLabel];
 
-}
-
-#pragma mark - Layout
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
+    [_recreateButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView);
+        make.top.equalTo(self.radiusValueLabel.mas_bottom);
+    }];
     
-    [self layoutSubviews];
-}
-
-- (void)layoutSubviews
-{
-    CGFloat fullWidth = CGRectGetWidth(self.view.bounds);
-    
-    _radiusSlider.frame = CGRectMake(0, 0, fullWidth, kSliderHeight);
-    
-    _framesCountSlider.frame = CGRectMake(0, CGRectGetMaxY(_radiusSlider.frame), fullWidth, kSliderHeight);
-    
-    _tintColorSwitch.frame = CGRectMake(0, CGRectGetMaxY(_framesCountSlider.frame), fullWidth, kSwitchHeight);
-    
-    _repeatForeverSwitch.frame = CGRectMake(0, CGRectGetMaxY(_tintColorSwitch.frame), fullWidth, kSwitchHeight);
-    
-    _downsampleSwitch.frame = CGRectMake(0, CGRectGetMaxY(_repeatForeverSwitch.frame), fullWidth, kSwitchHeight);
-    
-    _imageView.frame = CGRectMake(CGRectGetMidX(self.view.frame) - CGRectGetWidth(_imageView.bounds) / 2,
-                                  CGRectGetMaxY(_downsampleSwitch.frame),
-                                  CGRectGetWidth(_imageView.bounds),
-                                  CGRectGetHeight(_imageView.bounds)
-                                  );
-    
-    CGFloat labelValueWidth = fullWidth / 2;
-    
-    _radiusValueLabel.frame = CGRectMake(0, CGRectGetMaxY(_imageView.frame), labelValueWidth, kLabelHeight);
-    
-    _framesCountValueLabel.frame = CGRectMake(CGRectGetMaxX(_radiusValueLabel.frame), CGRectGetMaxY(_imageView.frame), labelValueWidth, kLabelHeight);
-    
-    [_recreateButton.titleLabel sizeToFit];
-    _recreateButton.bounds = _recreateButton.titleLabel.bounds;
-    _recreateButton.frame = CGRectMake((fullWidth - CGRectGetWidth(_recreateButton.bounds)) / 2,
-                                       CGRectGetMaxY(_radiusValueLabel.frame),
-                                       CGRectGetWidth(_recreateButton.bounds),
-                                       kButtonHeight
-                                       );
-    
-    [_playAnimationButton.titleLabel sizeToFit];
-    _playAnimationButton.bounds = _playAnimationButton.titleLabel.bounds;
-    _playAnimationButton.frame = CGRectMake((fullWidth - CGRectGetWidth(_playAnimationButton.bounds)) / 2,
-                                            CGRectGetMaxY(_recreateButton.frame),
-                                            CGRectGetWidth(_playAnimationButton.bounds),
-                                            kButtonHeight
-                                            );
-    
-    _contentScrollView.frame = CGRectMake(0, 0, fullWidth, CGRectGetHeight(self.view.bounds));
-    _contentScrollView.contentSize = CGSizeMake(fullWidth, CGRectGetMaxY(_playAnimationButton.frame));
+    [_playAnimationButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView);
+        make.top.equalTo(self.recreateButton.mas_bottom);
+        make.bottom.equalTo(self.contentScrollView);
+    }];
 }
 
 #pragma mark - Event Response
@@ -238,7 +251,6 @@ static CGFloat const kSwitchHeight = 30.f;
     }];
     [_contentScrollView addSubview:_imageView];
     _isNeedRegenerateBlurFrames = NO;
-    [self layoutSubviews];
 }
 
 - (void)onPlayAnimationButtonClicked:(UIButton *)sender
