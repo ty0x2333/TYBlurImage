@@ -1,0 +1,11 @@
+platform :ios,'7.0'
+
+target 'TYBlurImage_Example' do
+  pod 'TYBlurImage', :path => '../'
+
+  target 'TYBlurImage_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+  end
+end

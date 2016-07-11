@@ -1,0 +1,19 @@
+PODS:
+  - Kiwi (2.4.0)
+  - TYBlurImage (0.1.0)
+
+DEPENDENCIES:
+  - Kiwi
+  - TYBlurImage (from `../`)
+
+EXTERNAL SOURCES:
+  TYBlurImage:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+  TYBlurImage: 3cb457e49c28a16cd24121d916d13b071d2ee46d
+
+PODFILE CHECKSUM: 9b69af1bfd354dd7989c9ced1f35ea95423037a8
+
+COCOAPODS: 1.0.1
