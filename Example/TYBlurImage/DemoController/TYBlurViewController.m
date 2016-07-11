@@ -73,7 +73,7 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.title = @"Effects";
     self.view.backgroundColor = [UIColor whiteColor];
     
     _contentScrollView = [[UIScrollView alloc] init];

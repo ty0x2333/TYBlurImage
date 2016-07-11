@@ -39,6 +39,7 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"TYBlurImage";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellIdentifier];
     
     _titles = @[@"Blur Image", @"Play Blur Animation"];

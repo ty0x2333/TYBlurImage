@@ -65,6 +65,7 @@ static CGFloat const kSwitchHeight = 30.f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Animation";
     self.view.backgroundColor = [UIColor whiteColor];
     
     _contentScrollView = [[UIScrollView alloc] init];
