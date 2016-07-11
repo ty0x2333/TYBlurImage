@@ -28,6 +28,7 @@
 #import "UIImageView+BlurAnimation.h"
 #import "TYDemoSwitch.h"
 #import "TYDemoSlider.h"
+#import <Masonry.h>
 
 static CGFloat const kButtonHeight = 30.f;
 static CGFloat const kSliderHeight = 40.f;
@@ -35,7 +36,6 @@ static CGFloat const kSwitchHeight = 30.f;
 
 static CGFloat const kResetToSourceButtonCornerRadius = 5.f;
 
-static CGFloat const kResetToSourceButtonTitleMarginHorizontal = 8.f;
 static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
 
 #define kTiniColor [UIColor colorWithWhite:1.0 alpha:0.3]
@@ -115,7 +115,6 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
     _defaultEffectsLabel = [[UILabel alloc] init];
     _defaultEffectsLabel.textAlignment = NSTextAlignmentCenter;
     _defaultEffectsLabel.text = @"Default Effects";
-    _defaultEffectsLabel.layer.borderWidth = 1.f;
     [_contentScrollView addSubview:_defaultEffectsLabel];
     
     _resetToSourceButton = [[UIButton alloc] init];
@@ -126,59 +125,57 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
     [_contentScrollView addSubview:_resetToSourceButton];
     
     [self setupButtons];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
     
-    CGFloat fullWidth = CGRectGetWidth(self.view.bounds);
-    
-    _contentScrollView.frame = self.view.bounds;
-    
-    _radiusSlider.frame = CGRectMake(0, 0, fullWidth, kSliderHeight);
-    
-    _saturationSlider.frame = CGRectMake(0, CGRectGetMaxY(_radiusSlider.frame), fullWidth, kSliderHeight);
-    
-    _tintColorSwitch.frame = CGRectMake(0, CGRectGetMaxY(_saturationSlider.frame), fullWidth, kSwitchHeight);
-    
-    _radiusValueLabel.frame = CGRectMake(0, CGRectGetMaxY(_tintColorSwitch.frame),
-                                         fullWidth / 2,
-                                         CGRectGetHeight(_radiusValueLabel.bounds));
-    
-    _saturationValueLabel.frame = CGRectMake(fullWidth / 2, CGRectGetMaxY(_tintColorSwitch.frame),
-                                             fullWidth / 2,
-                                             CGRectGetHeight(_radiusValueLabel.bounds));
-    
-    _imageView.frame = CGRectMake((fullWidth - CGRectGetWidth(_imageView.frame)) / 2,
-                                  CGRectGetMaxY(_radiusValueLabel.frame),
-                                  CGRectGetWidth(_imageView.frame),
-                                  CGRectGetHeight(_imageView.frame)
-                                  );
-    [_resetToSourceButton.titleLabel sizeToFit];
-    _resetToSourceButton.bounds = _resetToSourceButton.titleLabel.bounds;
-    _resetToSourceButton.frame = CGRectMake((fullWidth - CGRectGetWidth(_resetToSourceButton.bounds) - 2 * kResetToSourceButtonTitleMarginHorizontal) / 2,
-                                            CGRectGetMaxY(_imageView.frame) + kResetToSourceButtonTitleMarginVertical,
-                                            CGRectGetWidth(_resetToSourceButton.bounds) + 2 * kResetToSourceButtonTitleMarginHorizontal,
-                                            kButtonHeight
-                                            );
-    [_defaultEffectsLabel sizeToFit];
-    _defaultEffectsLabel.frame = CGRectMake(0,
-                                            CGRectGetMaxY(_resetToSourceButton.frame) + kResetToSourceButtonTitleMarginVertical,
-                                            fullWidth, CGRectGetHeight(_defaultEffectsLabel.bounds)
-                                            );
-    
-    CGFloat buttonWidth = CGRectGetWidth(self.view.bounds) / 2;
-    CGRect firstButtonFrame = CGRectMake(0, CGRectGetMaxY(_defaultEffectsLabel.frame),
-                                         CGRectGetWidth(self.view.bounds) / 2, kButtonHeight
-                                         );
-    
-    [_controlButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
-        button.frame = CGRectOffset(firstButtonFrame, (idx % 2) * buttonWidth, (idx / 2) * kButtonHeight);
+    [_contentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
     }];
     
-    _contentScrollView.contentSize = CGSizeMake(fullWidth, CGRectGetMaxY([[_controlButtons lastObject] frame]));
-
+    [_radiusSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kSliderHeight));
+        make.width.equalTo(self.contentScrollView);
+    }];
+    
+    [_saturationSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.radiusSlider.mas_bottom);
+        make.width.height.equalTo(self.radiusSlider);
+        make.left.equalTo(self.contentScrollView);
+    }];
+    
+    [_tintColorSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.saturationSlider.mas_bottom);
+        make.width.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kSwitchHeight));
+    }];
+    
+    [_radiusValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tintColorSwitch.mas_bottom);
+        make.left.equalTo(self.contentScrollView);
+        make.width.equalTo(self.contentScrollView).multipliedBy(.5f);
+    }];
+    
+    [_saturationValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tintColorSwitch.mas_bottom);
+        make.left.equalTo(self.radiusValueLabel.mas_right);
+        make.width.equalTo(self.radiusValueLabel);
+    }];
+    
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentScrollView);
+        make.top.equalTo(self.saturationValueLabel.mas_bottom);
+    }];
+    
+    [_resetToSourceButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.imageView.mas_bottom).offset(kResetToSourceButtonTitleMarginVertical);
+        make.centerX.equalTo(self.contentScrollView);
+        make.height.equalTo(@(kButtonHeight));
+    }];
+    
+    [_defaultEffectsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.resetToSourceButton.mas_bottom).offset(kResetToSourceButtonTitleMarginVertical);
+        make.width.equalTo(self.contentScrollView);
+        make.left.equalTo(self.contentScrollView);
+    }];
 }
 
 #pragma mark - Setup
@@ -200,7 +197,24 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
         [button setTitle:title forState:UIControlStateNormal];
         [_contentScrollView addSubview:button];
         [_controlButtons addObject:button];
+        
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (idx % 2 == 0) {
+                make.left.equalTo(self.contentScrollView);
+            } else {
+                make.left.equalTo(((UIView *)self.controlButtons[idx - 1]).mas_right);
+            }
+            
+            if (idx / 2 == 0) {
+                make.top.equalTo(self.defaultEffectsLabel.mas_bottom);
+            } else {
+                make.top.equalTo(((UIView *)self.controlButtons[idx - 2]).mas_bottom);
+                make.bottom.equalTo(self.contentScrollView);
+            }
+            make.width.equalTo(self.contentScrollView).multipliedBy(.5f);
+        }];
     }];
+    
 }
 
 #pragma mark - Event Response
