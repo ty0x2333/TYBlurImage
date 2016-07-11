@@ -73,25 +73,7 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class viewControllerClass = NSClassFromString(_viewControllersMap[_titles[indexPath.row]]);
-    [self.navigationController pushViewController:[[viewControllerClass alloc] init] animated:NO];
+    [self.navigationController pushViewController:[[viewControllerClass alloc] init] animated:YES];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
