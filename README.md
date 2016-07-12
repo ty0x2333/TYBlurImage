@@ -7,19 +7,24 @@ TYBlurImage
 
 An easy way to set up blur effect and play the animation.
 
-## Example
+Example
+===
 
-### UIImageView Play Blur Aniamtion
+UIImageView Play Blur Aniamtion
+---
 
 ![Play Aniamtion Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImageView.gif)
 
-### UIImage Blur Effects
+UIImage Blur Effects
+---
 
 ![Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImage.gif)
 
-## Installation
+Installation
+===
 
-### Installation with CocoaPods
+Installation with CocoaPods
+---
 
 [CocoaPods](http://cocoapods.org/) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects. See the [Get Started](http://cocoapods.org/#get_started) section for more details.
 
@@ -31,11 +36,13 @@ Add the following to your Podfile.
 pod 'TYBlurImage'
 ```
 
-## How To Use
+Usage
+===
 
 API documentation is available at [CocoaDocs - TYBlurImage](http://cocoadocs.org/docsets/TYBlurImage/)
 
-### Blur Effects
+Blur Effects
+---
 
 Just `#import` the `UIImage+BlurEffects` header.
 
@@ -55,7 +62,7 @@ call the following method is rapid to blur.
 
 UIImage *sourceImage = [UIImage imageNamed:@"testImage.png"];
 // Light Effect
-UIImage *image = [UIImage ty_imageByApplyingLightEffectToImage:_sourceImage];
+UIImage *image = [UIImage ty_imageByApplyingLightEffectToImage:sourceImage];
 ```
 
 #### Use base method
@@ -69,7 +76,8 @@ UIColor *tintColor = [UIColor colorWithWhite:0.4f alpha:0.3f];
 UIImage *image = [UIImage ty_imageByApplyingBlurToImage:sourceImage withRadius:blurRadius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:nil];
 ```
 
-### UIImageView Animation
+UIImageView Animation
+---
 
 Just `#import` the `UIImageView+BlurAnimation` header.
 
@@ -92,6 +100,7 @@ With blocks, you can be notified about whenever the image animation has complete
 }];
 ```
 
-## License
+License
+===
 
 `TYBlurImage` is available under the MIT license. See the LICENSE file for more info.
