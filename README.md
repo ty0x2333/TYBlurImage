@@ -10,15 +10,10 @@ An easy way to set up blur effect and play the animation.
 Example
 ===
 
-UIImageView Play Blur Aniamtion
----
+|                                               UIImageView Play Blur Aniamtion                                               |                                              UIImage Blur Effects                                               |
+|:---------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|
+| ![Play Aniamtion Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImageView.gif) | ![Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImage.gif) |
 
-![Play Aniamtion Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImageView.gif)
-
-UIImage Blur Effects
----
-
-![Effect Example](https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/README-Res/BlurImage.gif)
 
 Installation
 ===
