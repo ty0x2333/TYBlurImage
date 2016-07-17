@@ -98,7 +98,7 @@ static CGFloat const kSwitchHeight = 30.f;
     
     _repeatForeverSwitch = [[TYDemoSwitch alloc] init];
     _repeatForeverSwitch.title = @"Repeat Forever";
-    [_repeatForeverSwitch.contentSwitch addTarget:self action:@selector(onTintColorSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_repeatForeverSwitch.contentSwitch addTarget:self action:@selector(onRepeatForeverSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_contentScrollView addSubview:_repeatForeverSwitch];
     
     _downsampleSwitch = [[TYDemoSwitch alloc] init];
