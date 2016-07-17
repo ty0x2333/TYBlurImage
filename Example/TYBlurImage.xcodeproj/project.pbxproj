@@ -14,6 +14,8 @@
 		1967BFF71D33DE67007B6388 /* TYMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1967BFF61D33DE67007B6388 /* TYMenuTableViewController.m */; };
 		1967BFF91D33DE83007B6388 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1967BFF81D33DE83007B6388 /* LaunchScreen.storyboard */; };
 		1967BFFC1D33DF01007B6388 /* lena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1967BFFB1D33DF01007B6388 /* lena.jpg */; };
+		19BD88B41D3B99050099DAA4 /* TYSimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD88B31D3B99050099DAA4 /* TYSimpleViewController.m */; };
+		19BD88B61D3B993F0099DAA4 /* dota2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19BD88B51D3B993F0099DAA4 /* dota2.jpg */; };
 		1D048236994C9660E1B8BBCA /* libPods-TYBlurImage_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BA5E0B23220B67B33DCBEC /* libPods-TYBlurImage_Tests.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -55,6 +57,9 @@
 		1967BFF61D33DE67007B6388 /* TYMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYMenuTableViewController.m; sourceTree = "<group>"; };
 		1967BFF81D33DE83007B6388 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1967BFFB1D33DF01007B6388 /* lena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lena.jpg; sourceTree = "<group>"; };
+		19BD88B21D3B99050099DAA4 /* TYSimpleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYSimpleViewController.h; sourceTree = "<group>"; };
+		19BD88B31D3B99050099DAA4 /* TYSimpleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYSimpleViewController.m; sourceTree = "<group>"; };
+		19BD88B51D3B993F0099DAA4 /* dota2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dota2.jpg; sourceTree = "<group>"; };
 		3E3C459C98EADC291BEE39C5 /* Pods-TYBlurImage_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYBlurImage_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TYBlurImage_Example/Pods-TYBlurImage_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* TYBlurImage_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TYBlurImage_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +118,8 @@
 		1967BFE71D33DE5C007B6388 /* DemoController */ = {
 			isa = PBXGroup;
 			children = (
+				19BD88B21D3B99050099DAA4 /* TYSimpleViewController.h */,
+				19BD88B31D3B99050099DAA4 /* TYSimpleViewController.m */,
 				1967BFE81D33DE5C007B6388 /* TYBlurViewController.h */,
 				1967BFE91D33DE5C007B6388 /* TYBlurViewController.m */,
 				1967BFEA1D33DE5C007B6388 /* TYPlayAnimationViewController.h */,
@@ -135,6 +142,7 @@
 		1967BFFA1D33DF01007B6388 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				19BD88B51D3B993F0099DAA4 /* dota2.jpg */,
 				1967BFFB1D33DF01007B6388 /* lena.jpg */,
 			);
 			path = Resource;
@@ -330,6 +338,7 @@
 			files = (
 				1967BFF91D33DE83007B6388 /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				19BD88B61D3B993F0099DAA4 /* dota2.jpg in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				1967BFFC1D33DF01007B6388 /* lena.jpg in Resources */,
 			);
@@ -445,6 +454,7 @@
 			files = (
 				6003F59E195388D20070C39A /* TYAppDelegate.m in Sources */,
 				1967BFED1D33DE5C007B6388 /* TYPlayAnimationViewController.m in Sources */,
+				19BD88B41D3B99050099DAA4 /* TYSimpleViewController.m in Sources */,
 				1967BFF41D33DE60007B6388 /* TYDemoSwitch.m in Sources */,
 				6003F5A7195388D20070C39A /* TYViewController.m in Sources */,
 				1967BFEC1D33DE5C007B6388 /* TYBlurViewController.m in Sources */,

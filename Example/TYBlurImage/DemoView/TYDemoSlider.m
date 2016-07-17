@@ -23,6 +23,7 @@
 //
 
 #import "TYDemoSlider.h"
+#import <Masonry.h>
 
 static CGFloat const kContentMarginHorizontal = 20.f;
 
@@ -44,25 +45,19 @@ static CGFloat const kContentMarginHorizontal = 20.f;
         
         _slider = [[UISlider alloc] init];
         [self addSubview:_slider];
+        
+        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(kContentMarginHorizontal);
+            make.top.bottom.equalTo(self);
+        }];
+        
+        [_slider mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.titleLabel.mas_right).offset(kContentMarginHorizontal);
+            make.right.equalTo(self).offset(-kContentMarginHorizontal);
+            make.top.bottom.equalTo(self);
+        }];
     }
     return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    CGFloat fullWidth = CGRectGetWidth(self.bounds);
-    CGFloat fullHeight = CGRectGetHeight(self.bounds);
-    [_titleLabel sizeToFit];
-    _titleLabel.frame = CGRectMake(kContentMarginHorizontal, 0,
-                                   CGRectGetWidth(_titleLabel.bounds), fullHeight
-                                   );
-    [_slider sizeToFit];
-    _slider.frame = CGRectMake(CGRectGetMaxX(_titleLabel.frame),
-                               0,
-                               fullWidth - CGRectGetMaxX(_titleLabel.frame) -  kContentMarginHorizontal,
-                               fullHeight
-                               );
 }
 
 #pragma mark - Setter / Getter
@@ -77,12 +72,12 @@ static CGFloat const kContentMarginHorizontal = 20.f;
     return _titleLabel.text;
 }
 
-- (void)setValue:(float)value
+- (void)setValue:(CGFloat)value
 {
     _slider.value = value;
 }
 
-- (float)value
+- (CGFloat)value
 {
     return _slider.value;
 }

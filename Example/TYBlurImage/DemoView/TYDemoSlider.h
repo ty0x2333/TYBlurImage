@@ -30,6 +30,6 @@
 
 @property (nonatomic, strong) UISlider *slider;
 
-@property (nonatomic, assign) float value;
+@property (nonatomic, assign) CGFloat value;
 
 @end
