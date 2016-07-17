@@ -54,8 +54,6 @@ static CGFloat const kSwitchHeight = 30.f;
 @property (nonatomic, strong) UILabel *radiusValueLabel;
 @property (nonatomic, strong) UILabel *framesCountValueLabel;
 
-@property (nonatomic, strong) UIButton *recreateButton;
-
 @property (nonatomic, strong) UIButton *playAnimationButton;
 
 @end
@@ -70,12 +68,6 @@ static CGFloat const kSwitchHeight = 30.f;
     
     _contentScrollView = [[UIScrollView alloc] init];
     [self.view addSubview:_contentScrollView];
-    
-    _recreateButton = [[UIButton alloc] init];
-    [_recreateButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [_recreateButton addTarget:self action:@selector(onRecreateImageViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_recreateButton setTitle:@"Recreate ImageView" forState:UIControlStateNormal];
-    [_contentScrollView addSubview:_recreateButton];
     
     _playAnimationButton = [[UIButton alloc] init];
     [_playAnimationButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -189,16 +181,10 @@ static CGFloat const kSwitchHeight = 30.f;
     _framesCountValueLabel.textAlignment = NSTextAlignmentCenter;
     [_contentScrollView addSubview:_framesCountValueLabel];
 
-    [_recreateButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentScrollView);
-        make.width.equalTo(self.contentScrollView);
-        make.top.equalTo(self.radiusValueLabel.mas_bottom);
-    }];
-    
     [_playAnimationButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentScrollView);
         make.width.equalTo(self.contentScrollView);
-        make.top.equalTo(self.recreateButton.mas_bottom);
+        make.top.equalTo(self.radiusValueLabel.mas_bottom);
         make.bottom.equalTo(self.contentScrollView);
     }];
 }
@@ -237,21 +223,6 @@ static CGFloat const kSwitchHeight = 30.f;
     _radiusValueLabel.text = [NSString stringWithFormat:@"Radius: %.1f", sender.value];
     _imageView.blurRadius = sender.value;
     _isNeedRegenerateBlurFrames = YES;
-}
-
-- (void)onRecreateImageViewButtonClicked:(UIButton *)sender
-{
-    [_imageView removeFromSuperview];
-    _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lena.jpg"]];
-    _imageView.animationRepeatCount = _repeatForeverSwitch.isOn ? 0 : 1;
-    _imageView.blurRadius = _radiusSlider.value;
-    _imageView.framesCount = (NSInteger)_framesCountSlider.value;
-    _imageView.blurTintColor = _tintColorSwitch.isOn ? kTintColor : nil;
-    [_imageView ty_blurInAnimationWithDuration:0.25f completion:^{
-        NSLog(@"Animation End");
-    }];
-    [_contentScrollView addSubview:_imageView];
-    _isNeedRegenerateBlurFrames = NO;
 }
 
 - (void)onPlayAnimationButtonClicked:(UIButton *)sender
