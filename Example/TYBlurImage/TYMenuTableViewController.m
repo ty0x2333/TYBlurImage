@@ -24,6 +24,7 @@
 
 #import "TYMenuTableViewController.h"
 #import "TYPlayAnimationViewController.h"
+#import "TYSimpleViewController.h"
 
 static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 
@@ -42,9 +43,10 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
     self.title = @"TYBlurImage";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellIdentifier];
     
-    _titles = @[@"Blur Image", @"Play Blur Animation"];
+    _titles = @[@"Simple", @"Blur Image", @"Play Blur Animation"];
     
-    _viewControllersMap = @{@"Blur Image": @"TYBlurViewController",
+    _viewControllersMap = @{@"Simple": @"TYSimpleViewController",
+                            @"Blur Image": @"TYBlurViewController",
                             @"Play Blur Animation": @"TYPlayAnimationViewController"
                             };
 }
@@ -74,6 +76,10 @@ static NSString* const kTableViewCellIdentifier = @"tableViewCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class viewControllerClass = NSClassFromString(_viewControllersMap[_titles[indexPath.row]]);
+    if (indexPath.row == 0) {
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[viewControllerClass alloc] init];
+        return;
+    }
     [self.navigationController pushViewController:[[viewControllerClass alloc] init] animated:YES];
 }
 
