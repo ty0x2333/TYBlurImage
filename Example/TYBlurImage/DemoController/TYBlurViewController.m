@@ -118,7 +118,8 @@ static CGFloat const kResetToSourceButtonTitleMarginVertical = 10.f;
     [_contentScrollView addSubview:_defaultEffectsLabel];
     
     _resetToSourceButton = [[UIButton alloc] init];
-    _resetToSourceButton.backgroundColor = [UIColor grayColor];
+    _resetToSourceButton.backgroundColor = [UIColor purpleColor];
+    _resetToSourceButton.contentEdgeInsets = UIEdgeInsetsMake(5.f, 10.f, 5.f, 10.f);
     _resetToSourceButton.layer.cornerRadius = kResetToSourceButtonCornerRadius;
     [_resetToSourceButton setTitle:@"Reset to source image" forState:UIControlStateNormal];
     [_resetToSourceButton addTarget:self action:@selector(onSourceButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
