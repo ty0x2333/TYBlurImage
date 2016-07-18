@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 #                        DESC
 
   s.homepage         = 'https://github.com/luckytianyiyan/TYBlurImage'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.screenshots     = 'https://raw.githubusercontent.com/luckytianyiyan/TYBlurImage/master/gifs/Simple.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'luckytianyiyan' => 'luckytianyiyan@gmail.com' }
   s.source           = { :git => 'https://github.com/luckytianyiyan/TYBlurImage.git', :tag => s.version.to_s }
