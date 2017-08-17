@@ -7,6 +7,8 @@ TYBlurImage
 
 An easy way to set up blur effect and play the animation.
 
+## :warning: THIS REPOSITORY WILL NO LONGER BE MAINTAINED BY THE DEVELOPER.
+
 Example
 ===
 |               Simple               |
